@@ -1,3 +1,11 @@
+gp_front:
+    resource: "@GPFrontBundle/Resources/config/routing.yml"
+    prefix:   /
+
+gp_main:
+    resource: "@GPMainBundle/Resources/config/routing.yml"
+    prefix:   /
+
 gp_gestion:
     resource: "@GPGestionBundle/Resources/config/routing.yml"
     prefix:   /
