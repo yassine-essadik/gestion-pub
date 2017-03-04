@@ -4,6 +4,7 @@ imports:
     - { resource: services.yml }
     - { resource: "@GPMainBundle/Resources/config/services.yml" }
     - { resource: "@GPFrontBundle/Resources/config/services.yml" }
+    - { resource: "@GPCmsBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -72,10 +73,29 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+# FOS User Bundle
 fos_user:
-    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    db_driver: orm
     firewall_name: main
-    user_class: AppBundle\Entity\User
+    user_class: GP\MainBundle\Entity\User
+    service:
+        mailer: fos_user.mailer.twig_swift
+    registration:
+        form:
+            type: gp_fos_user_register
+            validation_groups: [Register, Default, Registration]
+        confirmation:
+            enabled: true
+            template: GPFrontOfficeBundle:Registration:email.html.twig
+    profile:
+        form:
+            type: gp_fos_user_profile
+            #validation_groups: [Profile, Default]
+    resetting:
+        email:
+            template: GPFrontOfficeBundle:Resetting:email.html.twig
+    group:
+        group_class: GP\MainBundle\Entity\Group
     from_email:
-      address: essadik34@gmail.com
-      sender_name: Gestion Pub
+        address: essadik34@gmail.com
+        sender_name: Yassine Essadik

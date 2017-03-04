@@ -1,0 +1,13 @@
+gp_gestion_security_login:
+    path:     /login
+    defaults: { _controller: GPGestionBundle:Security:login }
+
+gp_gestion_security_check:
+    path:     /login-check
+    defaults: { _controller: GPGestionBundle:Security:check }
+    requirements:
+        _method: POST
+
+gp_gestion_security_logout:
+    path:     /logout
+    defaults: { _controller: GPGestionBundle:Security:logout }

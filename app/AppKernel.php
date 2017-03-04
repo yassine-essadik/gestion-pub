@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new GP\GestionBundle\GPGestionBundle(),
             new GP\MainBundle\GPMainBundle(),
             new GP\FrontBundle\GPFrontBundle(),
+            new GP\CmsBundle\GPCmsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

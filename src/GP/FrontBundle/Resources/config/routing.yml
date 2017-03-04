@@ -1,3 +1,10 @@
 gp_front_homepage:
     path:     /
     defaults: { _controller: GPFrontBundle:Default:index }
+
+# SECURITY
+#gp_front_security:
+ #   resource: "@GPFrontBundle/Resources/config/routing/security.yml"
+    
+    
+    

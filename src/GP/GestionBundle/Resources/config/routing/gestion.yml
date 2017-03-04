@@ -1,0 +1,5 @@
+gb_gestion_bundle_home:
+    path: /
+    defaults: { _controller: "GPGestionBundle:Default:index" }
+    requirements:
+        _method: GET

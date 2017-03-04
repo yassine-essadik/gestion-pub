@@ -1,3 +1,7 @@
-gp_gestion_homepage:
-    path:     /
-    defaults: { _controller: GPGestionBundle:Default:index }
+# SECURITY
+gp_gestion_security:
+    resource: "@GPGestionBundle/Resources/config/routing/security.yml"
+
+# BACKOFFICE
+gp_gestion_bo:
+    resource: "@GPGestionBundle/Resources/config/routing/gestion.yml"
