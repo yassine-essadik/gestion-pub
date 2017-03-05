@@ -29,8 +29,8 @@ security:
                 failure_path:   gp_gestion_bundle_admin_index
                 default_target_path: gp_gestion_index
             logout:
-                path: sf_web_app_back_office_security_logout
-                target: sf_web_app_cms_bundle_homepage
+                path: gp_gestion_security_logout
+                target: gp_cms_homepage
             anonymous:    true
 
         # defaut login area for standard users
