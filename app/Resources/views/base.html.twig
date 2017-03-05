@@ -2,12 +2,24 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Gestion pub{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+    	<div class = "topmenu">
+    		<a href = "">Accueil</a>
+    		<a href = "{{ path("gp_front_homepage") }}">Espace Client</a>
+    		<a href = "">Contact</a>
+    	</div>
+    	<div class = "content">
+    		{% block body %}{% endblock %}
+    	</div>
+        
+        <div class = "footer">
+        
+        </div>
+        
         {% block javascripts %}{% endblock %}
     </body>
 </html>
