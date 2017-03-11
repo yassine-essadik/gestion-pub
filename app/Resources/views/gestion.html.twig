@@ -11,14 +11,12 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     {% block stylesheets %}
 
-        {#% stylesheets filter='cssrewrite'
-        '@GBGestionBundle/Resources/public/css/libs/bootstrap.min.css'
-        '@GBGestionBundle/Resources/public/css/libs/bootstrap-theme.min.css'
-        '@GBGestionBundle/Resources/public/css/libs/jquery-ui.min.css'
-        '@GBGestionBundle/Resources/public/css/libs/jquery-ui.structure.min.css'
-        '@GBGestionBundle/Resources/public/css/libs/backoffice.css' %}
+        {% stylesheets filter='cssrewrite'
+        '@GPGestionBundle/Resources/public/css/bootstrap.min.css'
+        '@GPGestionBundle/Resources/public/css/bootstrap-theme.min.css'
+        '@GPGestionBundle/Resources/public/css/backoffice.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
-        {% endstylesheets %#}
+        {% endstylesheets %}
 
     {% endblock %}
 </head>
@@ -57,12 +55,11 @@
 
     {% block javascripts %}
 
-        {#% javascripts
-        '@GBGestionBundle/Resources/public/js/libs/jquery-1.10.1.min.js'
-        '@GBGestionBundle/Resources/public/js/libs/jquery-ui.min.js'
-        '@GBGestionBundle/Resources/public/js/libs/bootstrap.min.js' %}
+        {% javascripts
+        '@GPGestionBundle/Resources/public/js/jquery-3.1.1.min.js'
+        '@GPGestionBundle/Resources/public/js/bootstrap.min.js' %}
         <script src="{{ asset_url }}"></script>
-        {% endjavascripts %#}
+        {% endjavascripts %}
         
         <script>
             // get locale

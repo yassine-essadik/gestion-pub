@@ -99,3 +99,9 @@ fos_user:
     from_email:
         address: essadik34@gmail.com
         sender_name: Yassine Essadik
+        
+assetic:
+  debug:          '%kernel.debug%'
+  use_controller: '%kernel.debug%'
+  filters:
+    cssrewrite: ~

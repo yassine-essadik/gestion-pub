@@ -1,13 +1,13 @@
 profile:
     fields:
-        gender: Civilité
-        firstname: Prénom
+        gender: CivilitÃ©
+        firstname: PrÃ©nom
         lastname: Nom
         address: Adresse
         city: Ville
         country: Pays
         zip_code: Code postal
-        phone: Téléphone
+        phone: TÃ©lÃ©phone
         email: E-mail
         password_first: Mot de passe
         password_second: Mot de passe (validation)

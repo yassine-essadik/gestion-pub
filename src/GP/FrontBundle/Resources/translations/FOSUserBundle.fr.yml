@@ -1,11 +1,11 @@
 profile:
     fields:
-        gender: Civilité
-        firstname: Prénom
+        gender: CivilitÃ©
+        firstname: PrÃ©nom
         lastname: Nom
         address: Adresse
         zip_code: Code postal
-        phone: Tél.
+        phone: TÃ©l.
         email: E-mail
         password_first: Mot de passe
         password_second: Mot de passe (validation)
@@ -18,14 +18,14 @@ register:
 resetting:
     email:
         subject: |
-            Réinitialisation de votre mot de passe
+            RÃ©initialisation de votre mot de passe
         message:  |
-            <p>Pour réinitialiser votre mot de passe, merci de cliquer sur le lien suivant :</p>
+            <p>Pour rÃ©initialiser votre mot de passe, merci de cliquer sur le lien suivant :</p>
             <p><a href="%confirmationUrl%">%confirmationUrl%</a></p>
 
 # Registration
 registration:
-    confirmed: Votre compte est maintenant activé.
+    confirmed: Votre compte est maintenant activÃ©.
     email:
         subject: |
             Confirmation de l'inscription
