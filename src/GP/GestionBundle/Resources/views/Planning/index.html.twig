@@ -3,12 +3,12 @@
 {% block incontent %}
 	<h1 class="page-header">Planning</h1>
 	
-	
-	<div>
-		<a href = "{{ path("gb_gestion_bundle_planning_interventions") }}">Interventions</a>
-		<a href = "{{ path("gb_gestion_bundle_planning_projets") }}">Projets</a>
-		<a href = "{{ path("gb_gestion_bundle_planning_planning") }}">Planning</a>
-	</div>
-	
+	<div class="panel-body">
+		<div class="row">
+			<a href="{{ path("gb_gestion_bundle_planning_interventions") }}" class="btn btn-danger btn-lg" role="button"><span class="glyphicon glyphicon-list-alt"></span> <br/>Interventions</a>
+			<a href="{{ path("gb_gestion_bundle_planning_projets") }}" class="btn btn-warning btn-lg" role="button"><span class="glyphicon glyphicon-bookmark"></span> <br/>Projets</a>
+			<a href="{{ path("gb_gestion_bundle_planning_planning") }}" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-signal"></span> <br/>Planning</a>
+		</div>
+	</div>	
 {% endblock %}
 
