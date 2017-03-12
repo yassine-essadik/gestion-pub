@@ -1,13 +1,10 @@
-
-
 {# add navigation current nav mark #}
 {% set route = app.request.get('_route') %}
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>{% block title %}Back-Office Blog Test{% endblock %}</title>
+    <title>{% block title %}Back-Office{% endblock %}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     {% block stylesheets %}
 
@@ -21,11 +18,12 @@
     {% endblock %}
 </head>
 <body>
-    <div class="container">
 
-        {% block header %}{% endblock %}
+	{% block header %} 
+        
+	{% endblock %}
 
-        {% block flash %}
+        {#% block flash %}
 
             {% for flashMessage in app.session.flashbag.get('notice') %}
                 <div>
@@ -39,19 +37,14 @@
                 </div>
             {% endfor %}
 
-        {% endblock %}
+        {% endblock %#}
 
-        <!-- container content - BEGIN -->
-        <div class="container container-content">
-            <div id="layout-view" class="view view-villa-all">
-                {% block content %}{% endblock %}
-            </div>
-        </div>
-        <!-- container content - END -->
 
-        {% block footer %}{% endblock footer %}
+	{% block content %}{% endblock %}
 
-    </div>
+
+	{% block footer %}{% endblock footer %}
+
 
     {% block javascripts %}
 
