@@ -3,6 +3,42 @@
 {% block incontent %}
 	<h1 class="page-header">Planning</h1>
 	
-	
+	<div id="calendar"></div>
+
+	<script type="text/javascript">
+	jQuery(document).ready(function($) {
+
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay,listWeek'
+			},
+			height: 'auto',
+			minTime: '08:00:00',
+			defaultDate: '2017-03-12',
+			editable: false,
+			eventLimit: true, // allow "more" link when too many events
+			navLinks: true,
+			events: [
+													{
+					id: '18',
+					title: 'Dépose : Les quatres temps',
+					start: '2017-02-23 07:00:00',
+					url: '/index.php/dashboard?view=intervention&amp;layout=edit&amp;id=18',
+				},
+												],	
+			eventClick: function(event) {
+		        if (event.url) {
+		            window.open(event.url, '_self');
+				    
+		            return false;
+		        }
+		    },
+					
+		});
+
+	});
+	</script>
 {% endblock %}
 

@@ -11,11 +11,31 @@
         {% stylesheets filter='cssrewrite'
         '@GPGestionBundle/Resources/public/css/bootstrap.min.css'
         '@GPGestionBundle/Resources/public/css/bootstrap-theme.min.css'
+        '@GPGestionBundle/Resources/public/css/fullcalendar.min.css'
         '@GPGestionBundle/Resources/public/css/backoffice.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
         {% endstylesheets %}
 
     {% endblock %}
+    
+    {% block javascripts %}
+
+        {% javascripts
+        '@GPGestionBundle/Resources/public/js/jquery-3.1.1.min.js'
+        '@GPGestionBundle/Resources/public/js/bootstrap.min.js'
+        '@GPGestionBundle/Resources/public/js/moment.min.js'
+        '@GPGestionBundle/Resources/public/js/fullcalendar.min.js'
+        '@GPGestionBundle/Resources/public/js/fullcalendar_local_fr.js' %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        
+        <script>
+            // get locale
+            locale = "{{ app.request.locale }}";
+            // get route
+            route = "{{ route }}";
+        </script>
+    {% endblock %}    
 </head>
 <body>
 
@@ -45,22 +65,6 @@
 
 	{% block footer %}{% endblock footer %}
 
-
-    {% block javascripts %}
-
-        {% javascripts
-        '@GPGestionBundle/Resources/public/js/jquery-3.1.1.min.js'
-        '@GPGestionBundle/Resources/public/js/bootstrap.min.js' %}
-        <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-        
-        <script>
-            // get locale
-            locale = "{{ app.request.locale }}";
-            // get route
-            route = "{{ route }}";
-        </script>
-    {% endblock %}
 
 </body>
 </html>
