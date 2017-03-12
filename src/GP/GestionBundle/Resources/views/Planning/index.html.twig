@@ -1,0 +1,14 @@
+{% extends 'GPGestionBundle::layout-default.html.twig' %}
+
+{% block incontent %}
+	<h1 class="page-header">Planning</h1>
+	
+	
+	<div>
+		<a href = "{{ path("gb_gestion_bundle_planning_interventions") }}">Interventions</a>
+		<a href = "{{ path("gb_gestion_bundle_planning_projets") }}">Projets</a>
+		<a href = "{{ path("gb_gestion_bundle_planning_planning") }}">Planning</a>
+	</div>
+	
+{% endblock %}
+

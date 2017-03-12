@@ -3,3 +3,27 @@ gb_gestion_bundle_home:
     defaults: { _controller: "GPGestionBundle:Default:index" }
     requirements:
         _method: GET
+        
+gb_gestion_bundle_planning:
+    path: /planning
+    defaults: { _controller: "GPGestionBundle:Planning:index" }
+    
+gb_gestion_bundle_planning_interventions:
+    path: /planning/interventions
+    defaults: { _controller: "GPGestionBundle:Planning:interventions" }
+    
+gb_gestion_bundle_planning_projets:
+    path: /planning/projets
+    defaults: { _controller: "GPGestionBundle:Planning:projets" }
+    
+gb_gestion_bundle_planning_planning:
+    path: /planning/planning
+    defaults: { _controller: "GPGestionBundle:Planning:planning" }
+    
+gb_gestion_bundle_parametrage:
+    path: /parametrage
+    defaults: { _controller: "GPGestionBundle:Parametrage:index" }
+    
+gb_gestion_bundle_options:
+    path: /options
+    defaults: { _controller: "GPGestionBundle:Options:index" }    
