@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="societe")
  * @ORM\Entity(repositoryClass="GP\GestionBundle\Repository\SocieteRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Societe
 {
@@ -185,6 +186,23 @@ class Societe
     public function getModified()
     {
         return $this->modified;
+    }
+    
+    /**
+     * @ORM\PrePersist
+     */
+    public function createdDate()
+    {
+    	$this->setCreated(new \Datetime());
+    	$this->setModified(new \Datetime());
+    }
+    
+    /**
+     * @ORM\PreUpdate
+     */
+    public function modifiedDate()
+    {
+    	$this->setModified(new \Datetime());
     }
 }
 

@@ -3,25 +3,27 @@
 {% block incontent %}
 	<h1 class="page-header">Liste des sociétés</h1>
 
+	<a href="{{ path("gb_gestion_bundle_parametrage_societes_new") }}" class="btn btn-success" >Nouveau</a>
 	<div class="table-responsive">
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>#</th>
-					<th>#</th>
-					<th>#</th>
-					<th>#</th>
+					<th>Nom</th>
+					<th>Couleur</th>
+					<th>Id</th>
 				</tr>
 			</thead>
+			{% if items|length > 0 %}
 			<tbody>
+				{% for item in items %}
 				<tr>
-					<td>1,001</td>
-					<td>1,001</td>
-					<td>1,001</td>
-					<td>1,001</td>
+					<td><a href = "{{ path("gb_gestion_bundle_parametrage_societes_edit", { 'id': item.id }) }}">{{ item.nom }}</a></td>
+					<td><div style="width: 20px; background-color: {{ item.couleur }}">&nbsp;</div></td>
+					<td>{{ item.id }}</td>
 				</tr>
+				{% endfor %}
 			</tbody>
+			{% endif %}
 		</table>
 	</div>	
 {% endblock %}
-

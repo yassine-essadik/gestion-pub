@@ -46,8 +46,16 @@ gb_gestion_bundle_parametrage_pointsventes:
     
 gb_gestion_bundle_parametrage_societes:
     path: /parametrage/societes
-    defaults: { _controller: "GPGestionBundle:Parametrage:index" }
-                    
+    defaults: { _controller: "GPGestionBundle:Parametrage:societes" }
+
+gb_gestion_bundle_parametrage_societes_new:
+    path: /parametrage/societes/new
+    defaults: { _controller: "GPGestionBundle:Parametrage:societe" }
+    
+gb_gestion_bundle_parametrage_societes_edit:
+    path: /parametrage/societes/edit/{id}
+    defaults: { _controller: "GPGestionBundle:Parametrage:societe" }
+                        
 gb_gestion_bundle_options:
     path: /options
     defaults: { _controller: "GPGestionBundle:Options:index" }    
