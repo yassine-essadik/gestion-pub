@@ -43,23 +43,6 @@
         
 	{% endblock %}
 
-        {#% block flash %}
-
-            {% for flashMessage in app.session.flashbag.get('notice') %}
-                <div>
-                    {{ flashMessage }}
-                </div>
-            {% endfor %}
-
-            {% for flashMessage in app.session.flashbag.get('error') %}
-                <div>
-                    {{ flashMessage }}
-                </div>
-            {% endfor %}
-
-        {% endblock %#}
-
-
 	{% block content %}{% endblock %}
 
 

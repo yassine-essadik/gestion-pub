@@ -67,3 +67,7 @@ body {
 }
 
 .panel-body .btn:not(.btn-block) { width:345px; height:120px; margin-bottom:10px; }
+
+.flash-messages p {
+    padding: 15px;
+}

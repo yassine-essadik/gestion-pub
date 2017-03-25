@@ -1,7 +1,9 @@
 {% extends 'GPGestionBundle::layout-default.html.twig' %}
 
 {% block incontent %}
-	<h1 class="page-header">Société</h1>
+	<a class = "pull-right btn btn-primary" href = "{{ path("gb_gestion_bundle_parametrage_societes") }}">Retour vers la liste</a>
+
+	<h1 class="page-header">Société {{ item.nom }}</h1>
 
 	<div class = "formulaire-bloc">
 		{{ form(form) }}

@@ -60,6 +60,22 @@
 			</div>
 			
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			
+		        {% block flash %}
+					<div class = "flash-messages">
+		            {% for flashMessage in app.session.flashbag.get('notice') %}
+		                <p class="bg-info">
+		                    {{ flashMessage }}
+		                </p>
+		            {% endfor %}
+		
+		            {% for flashMessage in app.session.flashbag.get('error') %}
+		                <p class="bg-danger">
+		                    {{ flashMessage }}
+		                </p>
+		            {% endfor %}
+					</div>
+		        {% endblock %}			
 				{% block incontent %}
 				
 				
