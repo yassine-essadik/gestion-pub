@@ -2,5 +2,27 @@
 
 {% block incontent %}
 	<h1 class="page-header">Paramétrage</h1>
+	
+	<div class="panel-body">
+		<div class="row">
+			<a href="{{ path("gb_gestion_bundle_parametrage_clients") }}" class="btn btn-danger btn-lg" role="button">
+				<span class="glyphicon glyphicon-list-alt"></span> <br/>Clients</a>
+				
+			<a href="{{ path("gb_gestion_bundle_parametrage_campagnes") }}" class="btn btn-warning btn-lg" role="button">
+				<span class="glyphicon glyphicon-bookmark"></span> <br/>Campagnes</a>
+				
+			<a href="{{ path("gb_gestion_bundle_parametrage_poseurs") }}" class="btn btn-primary btn-lg" role="button">
+				<span class="glyphicon glyphicon-signal"></span> <br/>Poseurs</a>
+				
+			<a href="{{ path("gb_gestion_bundle_parametrage_chefs") }}" class="btn btn-danger btn-lg" role="button">
+				<span class="glyphicon glyphicon-list-alt"></span> <br/>Chefs de projet</a>
+				
+			<a href="{{ path("gb_gestion_bundle_parametrage_pointsventes") }}" class="btn btn-warning btn-lg" role="button">
+				<span class="glyphicon glyphicon-bookmark"></span> <br/>Points de vente</a>
+				
+			<a href="{{ path("gb_gestion_bundle_parametrage_societes") }}" class="btn btn-primary btn-lg" role="button">
+				<span class="glyphicon glyphicon-signal"></span> <br/>Sociétés</a>
+		</div>
+	</div>	
 {% endblock %}
 

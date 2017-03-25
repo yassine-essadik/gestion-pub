@@ -23,7 +23,31 @@ gb_gestion_bundle_planning_planning:
 gb_gestion_bundle_parametrage:
     path: /parametrage
     defaults: { _controller: "GPGestionBundle:Parametrage:index" }
+
+gb_gestion_bundle_parametrage_clients:
+    path: /parametrage/clients
+    defaults: { _controller: "GPGestionBundle:Parametrage:index" }
     
+gb_gestion_bundle_parametrage_campagnes:
+    path: /parametrage/campagnes
+    defaults: { _controller: "GPGestionBundle:Parametrage:index" }
+    
+gb_gestion_bundle_parametrage_poseurs:
+    path: /parametrage/poseurs
+    defaults: { _controller: "GPGestionBundle:Parametrage:index" }
+    
+gb_gestion_bundle_parametrage_chefs:
+    path: /parametrage/chefs
+    defaults: { _controller: "GPGestionBundle:Parametrage:index" }
+    
+gb_gestion_bundle_parametrage_pointsventes:
+    path: /parametrage/pointsventes
+    defaults: { _controller: "GPGestionBundle:Parametrage:index" }
+    
+gb_gestion_bundle_parametrage_societes:
+    path: /parametrage/societes
+    defaults: { _controller: "GPGestionBundle:Parametrage:index" }
+                    
 gb_gestion_bundle_options:
     path: /options
     defaults: { _controller: "GPGestionBundle:Options:index" }    
