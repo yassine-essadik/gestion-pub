@@ -22,6 +22,21 @@ class Poseur
     private $id;
 
     /**
+     *
+     * @ORM\ManyToOne(targetEntity="GP\GestionBundle\Entity\Societe")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    
+    private $societe;
+    
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="GP\GestionBundle\Entity\Departement", cascade={"persist"})
+     */
+    
+    private $departements;
+    
+    /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)

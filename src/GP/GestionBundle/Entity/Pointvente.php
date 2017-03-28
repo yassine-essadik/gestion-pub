@@ -22,6 +22,14 @@ class Pointvente
     private $id;
 
     /**
+     * 
+     * @ORM\ManyToOne(targetEntity="GP\GestionBundle\Entity\Departement")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    
+    private $departement;
+    
+    /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)

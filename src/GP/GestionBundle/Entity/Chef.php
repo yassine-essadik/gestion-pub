@@ -20,6 +20,14 @@ class Chef
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="GP\GestionBundle\Entity\Societe")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    
+    private $societe;
 
     /**
      * @var string

@@ -22,6 +22,22 @@ class Campagne
     private $id;
 
     /**
+     *
+     * @ORM\ManyToOne(targetEntity="GP\GestionBundle\Entity\Chef")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    
+    private $chef;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="GP\GestionBundle\Entity\Client")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    
+    private $client;
+    
+    /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
