@@ -1,9 +1,9 @@
 {% extends 'GPGestionBundle::layout-default.html.twig' %}
 
 {% block incontent %}
-	<a href="{{ path("gb_gestion_bundle_parametrage_pointventes_new") }}" class="pull-right btn btn-success" >Nouveau</a>
+	<a href="{{ path("gb_gestion_bundle_parametrage_chefs_new") }}" class="pull-right btn btn-success" >Nouveau</a>
 
-	<h1 class="page-header">Liste des points de ventes</h1>
+	<h1 class="page-header">Liste des chefs de projets</h1>
 
 	<div class="table-responsive">
 		<table class="table table-striped">
@@ -17,7 +17,7 @@
 			<tbody>
 				{% for item in items %}
 				<tr>
-					<td><a href = "{{ path("gb_gestion_bundle_parametrage_pointventes_edit", { 'id': item.id }) }}">{{ item.nom }}</a></td>
+					<td><a href = "{{ path("gb_gestion_bundle_parametrage_chefs_edit", { 'id': item.id }) }}">{{ item.nom }}</a></td>
 					<td>{{ item.id }}</td>
 				</tr>
 				{% endfor %}

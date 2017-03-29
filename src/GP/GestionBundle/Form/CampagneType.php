@@ -7,21 +7,18 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class PointventeType extends AbstractType
+class CampagneType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom')
-        		->add('adresse')
-        		->add('codePostal')
-        		->add('ville')
-        		->add('region')->add('province')->add('pays')->add('telephone')->add('contact1')->add('contact2')
-        		->add('email')->add('statut')->add('created')->add('modified')
-        		//->add('departement')
-        		->add('enregistrer',SubmitType::class);
+        $builder->add('nom')->add('commercial')->add('dateDebut')->add('dateFin')->add('descriptif')->add('numFacture')
+        ->add('dateFacturatin')->add('created')->add('modified')
+        //->add('chef')
+        //->add('client')
+        ->add('enregistrer',SubmitType::class);
     }
     
     /**
@@ -30,7 +27,7 @@ class PointventeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'GP\GestionBundle\Entity\Pointvente'
+            'data_class' => 'GP\GestionBundle\Entity\Campagne'
         ));
     }
 
@@ -39,7 +36,7 @@ class PointventeType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'gp_gestionbundle_pointvente';
+        return 'gp_gestionbundle_campagne';
     }
 
 

@@ -9,6 +9,14 @@ use GP\GestionBundle\Form\SocieteType;
 use Symfony\Component\HttpFoundation\Request;
 use GP\GestionBundle\Entity\Pointvente;
 use GP\GestionBundle\Form\PointventeType;
+use GP\GestionBundle\Entity\Chef;
+use GP\GestionBundle\Form\ChefType;
+use GP\GestionBundle\Entity\Poseur;
+use GP\GestionBundle\Form\PoseurType;
+use GP\GestionBundle\Entity\Campagne;
+use GP\GestionBundle\Form\CampagneType;
+use GP\GestionBundle\Entity\Client;
+use GP\GestionBundle\Form\ClientType;
 
 class ParametrageController extends Controller
 {
@@ -102,6 +110,189 @@ class ParametrageController extends Controller
     	}
     	 
     	return $this->render('GPGestionBundle:Parametrage:pointvente.html.twig', array(
+    			'form' => $form->createView(), 'item' => $item
+    	));
+    
+    }
+    
+    
+    public function chefsAction()
+    {
+    	$em = $this->getDoctrine()->getManager();
+    
+    	$items = $em->getRepository('GPGestionBundle:Chef')->findAll();
+    
+    	return $this->render('GPGestionBundle:Parametrage:chefs.html.twig' , array('items' => $items));
+    
+    }
+    
+    public function chefAction($id=null, Request $request)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    
+    	if(!empty($id))
+    	{
+    		$item = $em->getRepository('GPGestionBundle:Chef')->find($id);
+    		if (empty($item))
+    		{
+    			throw new NotFoundHttpException("L'enregistrement d'id ".$id." n'existe pas.");
+    		}
+    	}
+    	else
+    	{
+    		$item = new Chef();
+    	}
+    
+    	$form   = $this->get('form.factory')->create(ChefType::class, $item);
+    
+    	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+    
+    		$em->persist($item);
+    		$em->flush();
+    		$request->getSession()->getFlashBag()->clear();
+    		$request->getSession()->getFlashBag()->add('notice', 'Elément bien enregistré.');
+    
+    		return $this->redirectToRoute('gb_gestion_bundle_parametrage_chefs_edit', array('id' => $item->getId()));
+    	}
+    
+    	return $this->render('GPGestionBundle:Parametrage:chef.html.twig', array(
+    			'form' => $form->createView(), 'item' => $item
+    	));
+    
+    }
+
+
+    public function poseursAction()
+    {
+    	$em = $this->getDoctrine()->getManager();
+    
+    	$items = $em->getRepository('GPGestionBundle:Poseur')->findAll();
+    
+    	return $this->render('GPGestionBundle:Parametrage:poseurs.html.twig' , array('items' => $items));
+    
+    }
+    
+    public function poseurAction($id=null, Request $request)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    
+    	if(!empty($id))
+    	{
+    		$item = $em->getRepository('GPGestionBundle:Poseur')->find($id);
+    		if (empty($item))
+    		{
+    			throw new NotFoundHttpException("L'enregistrement d'id ".$id." n'existe pas.");
+    		}
+    	}
+    	else
+    	{
+    		$item = new Poseur();
+    	}
+    
+    	$form   = $this->get('form.factory')->create(PoseurType::class, $item);
+    
+    	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+    
+    		$em->persist($item);
+    		$em->flush();
+    		$request->getSession()->getFlashBag()->clear();
+    		$request->getSession()->getFlashBag()->add('notice', 'Elément bien enregistré.');
+    
+    		return $this->redirectToRoute('gb_gestion_bundle_parametrage_poseurs_edit', array('id' => $item->getId()));
+    	}
+    
+    	return $this->render('GPGestionBundle:Parametrage:poseur.html.twig', array(
+    			'form' => $form->createView(), 'item' => $item
+    	));
+    
+    }
+
+    public function campagnesAction()
+    {
+    	$em = $this->getDoctrine()->getManager();
+    
+    	$items = $em->getRepository('GPGestionBundle:Campagne')->findAll();
+    
+    	return $this->render('GPGestionBundle:Parametrage:campagnes.html.twig' , array('items' => $items));
+    
+    }
+    
+    public function campagneAction($id=null, Request $request)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    
+    	if(!empty($id))
+    	{
+    		$item = $em->getRepository('GPGestionBundle:Campagne')->find($id);
+    		if (empty($item))
+    		{
+    			throw new NotFoundHttpException("L'enregistrement d'id ".$id." n'existe pas.");
+    		}
+    	}
+    	else
+    	{
+    		$item = new Campagne();
+    	}
+    
+    	$form   = $this->get('form.factory')->create(CampagneType::class, $item);
+    
+    	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+    
+    		$em->persist($item);
+    		$em->flush();
+    		$request->getSession()->getFlashBag()->clear();
+    		$request->getSession()->getFlashBag()->add('notice', 'Elément bien enregistré.');
+    
+    		return $this->redirectToRoute('gb_gestion_bundle_parametrage_campagnes_edit', array('id' => $item->getId()));
+    	}
+    
+    	return $this->render('GPGestionBundle:Parametrage:campagne.html.twig', array(
+    			'form' => $form->createView(), 'item' => $item
+    	));
+    
+    }
+    
+    
+    public function clientsAction()
+    {
+    	$em = $this->getDoctrine()->getManager();
+    
+    	$items = $em->getRepository('GPGestionBundle:Client')->findAll();
+    
+    	return $this->render('GPGestionBundle:Parametrage:clients.html.twig' , array('items' => $items));
+    
+    }
+    
+    public function clientAction($id=null, Request $request)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    
+    	if(!empty($id))
+    	{
+    		$item = $em->getRepository('GPGestionBundle:Client')->find($id);
+    		if (empty($item))
+    		{
+    			throw new NotFoundHttpException("L'enregistrement d'id ".$id." n'existe pas.");
+    		}
+    	}
+    	else
+    	{
+    		$item = new Client();
+    	}
+    
+    	$form   = $this->get('form.factory')->create(ClientType::class, $item);
+    
+    	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+    
+    		$em->persist($item);
+    		$em->flush();
+    		$request->getSession()->getFlashBag()->clear();
+    		$request->getSession()->getFlashBag()->add('notice', 'Elément bien enregistré.');
+    
+    		return $this->redirectToRoute('gb_gestion_bundle_parametrage_clients_edit', array('id' => $item->getId()));
+    	}
+    
+    	return $this->render('GPGestionBundle:Parametrage:client.html.twig', array(
     			'form' => $form->createView(), 'item' => $item
     	));
     
