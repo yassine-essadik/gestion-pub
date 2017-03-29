@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use GP\GestionBundle\Entity\Societe;
 use GP\GestionBundle\Form\SocieteType;
 use Symfony\Component\HttpFoundation\Request;
+use GP\GestionBundle\Entity\Pointvente;
+use GP\GestionBundle\Form\PointventeType;
 
 class ParametrageController extends Controller
 {
@@ -58,5 +60,50 @@ class ParametrageController extends Controller
     			'form' => $form->createView(), 'item' => $societe
     	));
     	 
+    }
+    
+    public function pointventesAction()
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	 
+    	$items = $em->getRepository('GPGestionBundle:Pointvente')->findAll();
+    	 
+    	return $this->render('GPGestionBundle:Parametrage:pointventes.html.twig' , array('items' => $items));
+    	 
+    }
+    
+    public function pointventeAction($id=null, Request $request)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	 
+    	if(!empty($id))
+    	{
+    		$item = $em->getRepository('GPGestionBundle:Pointvente')->find($id);
+    		if (empty($item))
+    		{
+    			throw new NotFoundHttpException("L'enregistrement d'id ".$id." n'existe pas.");
+    		}
+    	}
+    	else
+    	{
+    		$item = new Pointvente();
+    	}
+    	 
+    	$form   = $this->get('form.factory')->create(PointventeType::class, $item);
+    
+    	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+    
+    		$em->persist($item);
+    		$em->flush();
+    		$request->getSession()->getFlashBag()->clear();
+    		$request->getSession()->getFlashBag()->add('notice', 'Elément bien enregistré.');
+    
+    		return $this->redirectToRoute('gb_gestion_bundle_parametrage_pointventes_edit', array('id' => $item->getId()));
+    	}
+    	 
+    	return $this->render('GPGestionBundle:Parametrage:pointvente.html.twig', array(
+    			'form' => $form->createView(), 'item' => $item
+    	));
+    
     }
 }

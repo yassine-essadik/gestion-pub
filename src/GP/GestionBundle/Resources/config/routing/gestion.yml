@@ -40,10 +40,18 @@ gb_gestion_bundle_parametrage_chefs:
     path: /parametrage/chefs
     defaults: { _controller: "GPGestionBundle:Parametrage:index" }
     
-gb_gestion_bundle_parametrage_pointsventes:
-    path: /parametrage/pointsventes
-    defaults: { _controller: "GPGestionBundle:Parametrage:index" }
+gb_gestion_bundle_parametrage_pointventes:
+    path: /parametrage/pointventes
+    defaults: { _controller: "GPGestionBundle:Parametrage:pointventes" }
+
+gb_gestion_bundle_parametrage_pointventes_new:
+    path: /parametrage/pointventes/new
+    defaults: { _controller: "GPGestionBundle:Parametrage:pointvente" }
     
+gb_gestion_bundle_parametrage_pointventes_edit:
+    path: /parametrage/pointventes/edit/{id}
+    defaults: { _controller: "GPGestionBundle:Parametrage:pointvente" }
+     
 gb_gestion_bundle_parametrage_societes:
     path: /parametrage/societes
     defaults: { _controller: "GPGestionBundle:Parametrage:societes" }
