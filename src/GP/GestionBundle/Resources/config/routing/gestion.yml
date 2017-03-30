@@ -12,10 +12,26 @@ gb_gestion_bundle_planning_interventions:
     path: /planning/interventions
     defaults: { _controller: "GPGestionBundle:Planning:interventions" }
     
+gb_gestion_bundle_planning_interventions_new:
+    path: /planning/interventions/new
+    defaults: { _controller: "GPGestionBundle:Planning:intervention" }
+    
+gb_gestion_bundle_planning_interventions_edit:
+    path: /planning/interventions/edit/{id}
+    defaults: { _controller: "GPGestionBundle:Planning:intervention" }
+            
 gb_gestion_bundle_planning_projets:
     path: /planning/projets
     defaults: { _controller: "GPGestionBundle:Planning:projets" }
     
+gb_gestion_bundle_planning_projets_new:
+    path: /planning/projets/new
+    defaults: { _controller: "GPGestionBundle:Planning:projet" }
+    
+gb_gestion_bundle_planning_projets_edit:
+    path: /planning/projets/edit/{id}
+    defaults: { _controller: "GPGestionBundle:Planning:projet" }
+            
 gb_gestion_bundle_planning_planning:
     path: /planning/planning
     defaults: { _controller: "GPGestionBundle:Planning:planning" }

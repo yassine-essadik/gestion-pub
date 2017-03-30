@@ -1,0 +1,13 @@
+{% extends 'GPGestionBundle::layout-default.html.twig' %}
+
+{% block incontent %}
+	<a class = "pull-right btn btn-primary" href = "{{ path("gb_gestion_bundle_planning_interventions") }}">Retour vers la liste</a>
+
+	<h1 class="page-header">Intervention</h1>
+
+	<div class = "formulaire-bloc">
+		{{ form(form) }}
+	</div>
+	
+	
+{% endblock %}

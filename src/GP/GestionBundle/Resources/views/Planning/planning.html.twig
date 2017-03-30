@@ -21,12 +21,16 @@
 			eventLimit: true, // allow "more" link when too many events
 			navLinks: true,
 			events: [
-													{
-					id: '18',
-					title: 'Dépose : Les quatres temps',
-					start: '2017-02-23 07:00:00',
-					url: '/index.php/dashboard?view=intervention&amp;layout=edit&amp;id=18',
-				},
+				{% if items|length > 0 %}
+					{% for item in items %}
+						{
+							id: '{{ item.id }}',
+							title: '{{ item.id }}',
+							start: '{{ item.dateDebut|date('Y-m-d H:i:s') }}',
+							url: '/index.php/dashboard?view=intervention&amp;layout=edit&amp;id={{ item.id }}',
+						},
+					{% endfor %}
+				{% endif %}
 												],	
 			eventClick: function(event) {
 		        if (event.url) {
