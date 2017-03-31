@@ -5,9 +5,29 @@
 	
 	<div class="panel-body">
 		<div class="row">
-			<a href="{{ path("gb_gestion_bundle_planning_interventions") }}" class="btn btn-danger btn-lg" role="button"><span class="glyphicon glyphicon-list-alt"></span> <br/>Interventions</a>
-			<a href="{{ path("gb_gestion_bundle_planning_projets") }}" class="btn btn-warning btn-lg" role="button"><span class="glyphicon glyphicon-bookmark"></span> <br/>Projets</a>
-			<a href="{{ path("gb_gestion_bundle_planning_planning") }}" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-signal"></span> <br/>Planning</a>
+
+			<div class = "panel-item">
+				<a href="{{ path("gb_gestion_bundle_planning_interventions") }}">
+					<img src="{{ asset('images/interventions.png') }}" />
+					<span>Interventions</span>
+				</a>
+			</div>
+			
+			<div class = "panel-item">
+				<a href="{{ path("gb_gestion_bundle_planning_projets") }}">
+					<img src="{{ asset('images/projets.png') }}" />
+					<span>Projets</span>
+				</a>
+			</div>			
+			
+			<div class = "panel-item">
+				<a href="{{ path("gb_gestion_bundle_planning_planning") }}">
+					<img src="{{ asset('images/calendrier.png') }}" />
+					<span>Planning</span>
+				</a>
+			</div>		
+		
+		
 		</div>
 	</div>	
 {% endblock %}

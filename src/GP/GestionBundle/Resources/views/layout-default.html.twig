@@ -15,10 +15,18 @@
 	        </div>	
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav">
-	            <li class="active"><a href="#">Accueil</a></li>
-	            <li><a href="{{ path("gb_gestion_bundle_planning") }}">Planning</a></li>
-	            <li><a href="{{ path("gb_gestion_bundle_parametrage") }}">Paramétrage</a></li>
-	            <li><a href="{{ path("gb_gestion_bundle_options") }}">Options</a></li>
+	            <li class="{% if app.request.get('_route') == 'gb_gestion_bundle_home' %} active{% endif %}">
+	            	<a href="{{ path("gb_gestion_bundle_home") }}">Accueil</a>
+	            </li>
+	            <li class="{% if app.request.get('_route') == 'gb_gestion_bundle_planning' %} active{% endif %}">
+	            	<a href="{{ path("gb_gestion_bundle_planning") }}">Planning</a>
+	            </li>
+	            <li class="{% if app.request.get('_route') == 'gb_gestion_bundle_parametrage' %} active{% endif %}">
+	            	<a href="{{ path("gb_gestion_bundle_parametrage") }}">Paramétrage</a>
+	            </li>
+	            <li class="{% if app.request.get('_route') == 'gb_gestion_bundle_options' %} active{% endif %}">
+	            	<a href="{{ path("gb_gestion_bundle_options") }}">Options</a>
+	            </li>
 	            {#}
 	            <li class="dropdown">
 	              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -45,6 +53,7 @@
 
 	<div class="container-fluid">
 		<div class="row">
+			{#}
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
 					<li class="active">
@@ -58,6 +67,7 @@
 					</li>
 				</ul>
 			</div>
+			{#}
 			
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			

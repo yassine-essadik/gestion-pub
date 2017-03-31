@@ -71,3 +71,55 @@ body {
 .flash-messages p {
     padding: 15px;
 }
+
+.panel-item a {
+	background-color: #fff;
+	background-position: -30px;
+	display: block;
+	float: left;
+	height: 110px;
+	width: 140px;
+	color: #565656;
+	vertical-align: middle;
+	text-decoration: none;
+	text-align: center;
+	margin-right: 15px;
+	margin-bottom: 15px;
+	border: 1px solid #CCC;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-transition-property: background-position,
+		-webkit-border-bottom-left-radius, -webkit-box-shadow;
+	-moz-transition-property: background-position,
+		-moz-border-radius-bottomleft, -moz-box-shadow;
+	-webkit-transition-duration: 0.8s;
+	-moz-transition-duration: 0.8s;
+	transition-property: background-position, border-bottom-left-radius,
+		box-shadow;
+	transition-duration: 0.8s;
+}
+
+.panel-item a:hover,.panel-item a:focus,.panel-item a:active
+	{
+	background-position: 0;
+	-webkit-border-bottom-left-radius: 50% 20px;
+	-moz-border-radius-bottomleft: 50% 20px;
+	border-bottom-left-radius: 50% 20px;
+	-webkit-box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
+	box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
+	position: relative;
+	z-index: 10;
+}
+
+.panel-item img {
+    margin: 0 auto;
+}
+
+.panel-item span {
+    font-size: 12px;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+}

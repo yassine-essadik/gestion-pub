@@ -2,26 +2,51 @@
 
 {% block incontent %}
 	<h1 class="page-header">Paramétrage</h1>
-	
+		
 	<div class="panel-body">
 		<div class="row">
-			<a href="{{ path("gb_gestion_bundle_parametrage_clients") }}" class="btn btn-danger btn-lg" role="button">
-				<span class="glyphicon glyphicon-list-alt"></span> <br/>Clients</a>
+			<div class = "panel-item">
+				<a href="{{ path("gb_gestion_bundle_parametrage_clients") }}">
+					<img src="{{ asset('images/clients.png') }}" />
+					<span>Clients</span>
+				</a>
+			</div>
+			
+			<div class = "panel-item">
+				<a href="{{ path("gb_gestion_bundle_parametrage_campagnes") }}">
+					<img src="{{ asset('images/campagnes.png') }}" />
+					<span>Campagnes</span>
+				</a>
+			</div>
+			
+			<div class = "panel-item">
+				<a href="{{ path("gb_gestion_bundle_parametrage_poseurs") }}">
+					<img src="{{ asset('images/poseurs.png') }}" />
+					<span>Poseurs</span>
+				</a>
+			</div>	
+					
+			<div class = "panel-item">
+				<a href="{{ path("gb_gestion_bundle_parametrage_chefs") }}">
+					<img src="{{ asset('images/chefs.png') }}" />
+					<span>Chefs de projet</span>
+				</a>
+			</div>
+			
+			<div class = "panel-item">
+				<a href="{{ path("gb_gestion_bundle_parametrage_pointventes") }}">
+					<img src="{{ asset('images/positions.png') }}" />
+					<span>Points de vente</span>
+				</a>
+			</div>			
+			
+			<div class = "panel-item">
+				<a href="{{ path("gb_gestion_bundle_parametrage_societes") }}">
+					<img src="{{ asset('images/societes.png') }}" />
+					<span>Sociétés</span>
+				</a>
+			</div>
 				
-			<a href="{{ path("gb_gestion_bundle_parametrage_campagnes") }}" class="btn btn-warning btn-lg" role="button">
-				<span class="glyphicon glyphicon-bookmark"></span> <br/>Campagnes</a>
-				
-			<a href="{{ path("gb_gestion_bundle_parametrage_poseurs") }}" class="btn btn-primary btn-lg" role="button">
-				<span class="glyphicon glyphicon-signal"></span> <br/>Poseurs</a>
-				
-			<a href="{{ path("gb_gestion_bundle_parametrage_chefs") }}" class="btn btn-danger btn-lg" role="button">
-				<span class="glyphicon glyphicon-list-alt"></span> <br/>Chefs de projet</a>
-				
-			<a href="{{ path("gb_gestion_bundle_parametrage_pointventes") }}" class="btn btn-warning btn-lg" role="button">
-				<span class="glyphicon glyphicon-bookmark"></span> <br/>Points de vente</a>
-				
-			<a href="{{ path("gb_gestion_bundle_parametrage_societes") }}" class="btn btn-primary btn-lg" role="button">
-				<span class="glyphicon glyphicon-signal"></span> <br/>Sociétés</a>
 		</div>
 	</div>	
 {% endblock %}
