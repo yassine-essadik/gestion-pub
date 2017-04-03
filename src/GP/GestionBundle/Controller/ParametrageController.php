@@ -13,7 +13,6 @@ use GP\GestionBundle\Entity\Chef;
 use GP\GestionBundle\Form\ChefType;
 use GP\GestionBundle\Entity\Poseur;
 use GP\GestionBundle\Form\PoseurType;
-use GP\GestionBundle\Entity\Campagne;
 use GP\GestionBundle\Form\CampagneType;
 use GP\GestionBundle\Entity\Client;
 use GP\GestionBundle\Form\ClientType;
@@ -96,9 +95,9 @@ class ParametrageController extends Controller
     	{
     		$item = new Pointvente();
     	}
-    	 
+    	
     	$form   = $this->get('form.factory')->create(PointventeType::class, $item);
-    
+    	var_dump($form->handleRequest($request)->isValid());die;
     	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
     
     		$em->persist($item);
@@ -206,53 +205,7 @@ class ParametrageController extends Controller
     	));
     
     }
-
-    public function campagnesAction()
-    {
-    	$em = $this->getDoctrine()->getManager();
-    
-    	$items = $em->getRepository('GPGestionBundle:Campagne')->findAll();
-    
-    	return $this->render('GPGestionBundle:Parametrage:campagnes.html.twig' , array('items' => $items));
-    
-    }
-    
-    public function campagneAction($id=null, Request $request)
-    {
-    	$em = $this->getDoctrine()->getManager();
-    
-    	if(!empty($id))
-    	{
-    		$item = $em->getRepository('GPGestionBundle:Campagne')->find($id);
-    		if (empty($item))
-    		{
-    			throw new NotFoundHttpException("L'enregistrement d'id ".$id." n'existe pas.");
-    		}
-    	}
-    	else
-    	{
-    		$item = new Campagne();
-    	}
-    
-    	$form   = $this->get('form.factory')->create(CampagneType::class, $item);
-    
-    	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-    
-    		$em->persist($item);
-    		$em->flush();
-    		$request->getSession()->getFlashBag()->clear();
-    		$request->getSession()->getFlashBag()->add('notice', 'Elément bien enregistré.');
-    
-    		return $this->redirectToRoute('gb_gestion_bundle_parametrage_campagnes_edit', array('id' => $item->getId()));
-    	}
-    
-    	return $this->render('GPGestionBundle:Parametrage:campagne.html.twig', array(
-    			'form' => $form->createView(), 'item' => $item
-    	));
-    
-    }
-    
-    
+ 
     public function clientsAction()
     {
     	$em = $this->getDoctrine()->getManager();

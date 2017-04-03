@@ -3,6 +3,7 @@
 namespace GP\GestionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Pointvente
@@ -128,6 +129,11 @@ class Pointvente
     private $modified;
 
 
+   /* public function __construct()
+    {
+    	$this->departement = new ArrayCollection();
+    }
+     */ 
     /**
      * Get id
      *
@@ -472,6 +478,19 @@ class Pointvente
     public function getModified()
     {
         return $this->modified;
+    }
+    
+    public function setDepartement(Departement $departement)
+    {
+    	$this->departement = $departement;
+    
+    	return $this;
+    }
+    
+    
+    public function getDepartement()
+    {
+    	return $this->departement;
     }
 }
 

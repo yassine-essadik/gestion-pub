@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use GP\GestionBundle\Repository\DepartementRepository;
 
 class PointventeType extends AbstractType
 {
@@ -20,7 +22,11 @@ class PointventeType extends AbstractType
         		->add('ville')
         		->add('region')->add('province')->add('pays')->add('telephone')->add('contact1')->add('contact2')
         		->add('email')->add('statut')->add('created')->add('modified')
-        		//->add('departement')
+        		->add('departement', EntityType::class, array(
+        		'class'        => 'GPGestionBundle:Departement',
+        		'choice_label' => 'nom',
+        		'multiple'     => true,
+        		))
         		->add('enregistrer',SubmitType::class);
     }
     

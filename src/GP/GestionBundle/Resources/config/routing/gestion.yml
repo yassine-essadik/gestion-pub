@@ -51,19 +51,6 @@ gb_gestion_bundle_parametrage_clients_new:
 gb_gestion_bundle_parametrage_clients_edit:
     path: /parametrage/clients/edit/{id}
     defaults: { _controller: "GPGestionBundle:Parametrage:client" }
-        
-gb_gestion_bundle_parametrage_campagnes:
-    path: /parametrage/campagnes
-    defaults: { _controller: "GPGestionBundle:Parametrage:campagnes" }
-
-gb_gestion_bundle_parametrage_campagnes_new:
-    path: /parametrage/campagnes/new
-    defaults: { _controller: "GPGestionBundle:Parametrage:campagne" }
-    
-gb_gestion_bundle_parametrage_campagnes_edit:
-    path: /parametrage/campagnes/edit/{id}
-    defaults: { _controller: "GPGestionBundle:Parametrage:campagne" }
-        
     
 gb_gestion_bundle_parametrage_poseurs:
     path: /parametrage/poseurs
