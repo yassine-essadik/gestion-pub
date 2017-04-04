@@ -1,10 +1,41 @@
+{# add navigation current nav mark #}
+{% set route = app.request.get('_route') %}
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Gestion pub{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+	    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+	    {% block stylesheets %}
+	
+	        {% stylesheets filter='cssrewrite'
+	        '@GPGestionBundle/Resources/public/css/bootstrap.min.css'
+	        '@GPGestionBundle/Resources/public/css/bootstrap-theme.min.css'
+	        '@GPGestionBundle/Resources/public/css/fullcalendar.min.css'
+	        '@GPGestionBundle/Resources/public/css/backoffice.css' %}
+	        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+	        {% endstylesheets %}
+	
+	    {% endblock %}
+	    
+	    {% block javascripts %}
+	
+	        {% javascripts
+	        '@GPGestionBundle/Resources/public/js/jquery-3.1.1.min.js'
+	        '@GPGestionBundle/Resources/public/js/bootstrap.min.js'
+	        '@GPGestionBundle/Resources/public/js/moment.min.js'
+	        '@GPGestionBundle/Resources/public/js/fullcalendar.min.js'
+	        '@GPGestionBundle/Resources/public/js/fullcalendar_local_fr.js' %}
+	        <script src="{{ asset_url }}"></script>
+	        {% endjavascripts %}
+	        
+	        <script>
+	            // get locale
+	            locale = "{{ app.request.locale }}";
+	            // get route
+	            route = "{{ route }}";
+	        </script>
+	    {% endblock %}  
     </head>
     <body>
     	<div class = "topmenu">
@@ -20,6 +51,6 @@
         
         </div>
         
-        {% block javascripts %}{% endblock %}
+        
     </body>
 </html>
