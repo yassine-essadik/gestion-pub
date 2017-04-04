@@ -55,7 +55,7 @@ security:
 
         - { path: ^/admin/connexion, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/private, roles: ROLE_USER }
+        - { path: ^/, roles: ROLE_USER }
         # front-office
         - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/connexion, roles: IS_AUTHENTICATED_ANONYMOUSLY }
