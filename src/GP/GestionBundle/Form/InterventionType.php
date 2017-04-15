@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class InterventionType extends AbstractType
 {
@@ -20,8 +21,22 @@ class InterventionType extends AbstractType
         		'choice_label' => 'nomcomplet',
         		'multiple'     => true
         		))
-	        	->add('dateDebut')
-	        	->add('dateFin')
+        		->add('dateDebut', DateType::class, [
+        				'widget' => 'single_text',
+        				'placeholder' => 'Sélectionner une date',
+        				'format' => 'dd-MM-yyyy HH:mm:ss',
+        				'attr' => [
+        						'class' => 'form-control input-inline datetimepicker',
+        				]
+        		])
+        		->add('dateFin', DateType::class, [
+        				'widget' => 'single_text',
+        				'placeholder' => 'Sélectionner une date',
+        				'format' => 'dd-MM-yyyy HH:mm:ss',
+        				'attr' => [
+        						'class' => 'form-control input-inline datetimepicker',
+        				]
+        		])
 	        	->add('laissezPasserValide')
 		        ->add('laissezPasserValidePar')
 		        ->add('contactUrgence')
@@ -30,7 +45,16 @@ class InterventionType extends AbstractType
 		        		'choice_label' => 'nom',
 		        		'multiple'     => false
 		        ))
-		        ->add('dateDemande')
+		        ->add('dateDemande', DateType::class, [
+		        		'widget' => 'single_text',
+		        		'placeholder' => 'Sélectionner une date',
+		        		'format' => 'dd-MM-yyyy',
+		        		'attr' => [
+		        				'class' => 'form-control input-inline datepicker',
+		        				'data-provide' => 'datepicker',
+		        				'data-date-format' => 'dd-mm-yyyy'
+		        		]
+		        ])
 		        ->add('type', EntityType::class, array(
 		        		'class'        => 'GPGestionBundle:InterventionType',
 		        		'choice_label' => 'nom',

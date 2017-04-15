@@ -16,7 +16,8 @@
 			},
 			height: 'auto',
 			minTime: '08:00:00',
-			defaultDate: '2017-03-12',
+			defaultDate: '{{ "now"|date('Y-m-d') }}',
+			defaultView: 'agendaWeek',
 			editable: false,
 			eventLimit: true, // allow "more" link when too many events
 			navLinks: true,
@@ -25,13 +26,14 @@
 					{% for item in items %}
 						{
 							id: '{{ item.id }}',
-							title: '{{ item.id }}',
+							title: '{{ item.type ~ " : " ~ item.projet.pointvente }}',
 							start: '{{ item.dateDebut|date('Y-m-d H:i:s') }}',
-							url: '/index.php/dashboard?view=intervention&amp;layout=edit&amp;id={{ item.id }}',
+							end: '{{ item.dateFin|date('Y-m-d H:i:s') }}',
+							url: '{{ path("gb_gestion_bundle_planning_interventions_edit", { 'id': item.id }) }}',
 						},
 					{% endfor %}
 				{% endif %}
-												],	
+					],	
 			eventClick: function(event) {
 		        if (event.url) {
 		            window.open(event.url, '_self');
