@@ -15,8 +15,10 @@
 					<th>Ville</th>
 					<th>CP</th>
 					<th>Projet</th>
+					<th>Type d'intervention</th>
 					<th>Client</th>
 					<th>Poseurs</th>
+					<th>Statut</th>
 				</tr>
 			</thead>
 			{% if items|length > 0 %}
@@ -29,8 +31,10 @@
 					<td>{{ item.projet.pointvente.ville }}</td>
 					<td>{{ item.projet.pointvente.codePostal }}</td>
 					<td>{{ item.projet }}</td>
+					<td>{{ item.type }}</td>
 					<td>{{ item.projet.client }}</td>
 					<td>{{ item.poseurs|join(', ') }}</td>
+					<td>{{ item.statut }}</td>
 				</tr>
 				{% endfor %}
 			</tbody>
