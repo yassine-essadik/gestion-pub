@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ProjetType extends AbstractType
 {
@@ -14,10 +15,25 @@ class ProjetType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('numDossier')->add('nom')->add('commercial')->add('dateDebutPose')->add('dateFinPose')
-        ->add('descriptif')->add('numFacture')->add('dateFacturation')->add('created')->add('modified')
-        //->add('campagne')->add('chef')
-        ->add('enregistrer',SubmitType::class);
+        $builder->add('numDossier')
+        		->add('nom')
+        		->add('client', EntityType::class, array(
+        				'class'        => 'GPGestionBundle:Client',
+        				'choice_label' => 'nom',
+        				'multiple'     => false,
+        		))
+        		->add('Pointvente', EntityType::class, array(
+        				'class'        => 'GPGestionBundle:Pointvente',
+        				'choice_label' => 'nom',
+        				'multiple'     => false,
+        		))
+        		->add('commercial')
+        		->add('dateDebutPose')
+        		->add('dateFinPose')
+		        ->add('descriptif')
+		        ->add('numFacture')
+		        ->add('dateFacturation')
+		        ->add('enregistrer',SubmitType::class);
     }
     
     /**

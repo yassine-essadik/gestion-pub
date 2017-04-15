@@ -320,4 +320,9 @@ class Client
     {
         return $this->pays;
     }
+    
+    public function __toString()
+    {
+    	return $this->getNom();
+    }
 }

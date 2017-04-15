@@ -346,4 +346,19 @@ class Poseur
     {
         return $this->departements;
     }
+    
+    /**
+     * Get nomcomplet
+     *
+     * @return string
+     */
+    public function getNomcomplet()
+    {
+    	return $this->nom . ' ' . $this->prenom;
+    }
+    
+    public function __toString()
+    {
+    	return $this->getNomcomplet();
+    }
 }

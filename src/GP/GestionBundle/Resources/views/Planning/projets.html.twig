@@ -9,7 +9,10 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>Nom</th>
+					<th>N° Dossier</th>
+					<th>Nom du projet</th>
+					<th>Client</th>
+					<th>Point de vente</th>
 					<th>Id</th>
 				</tr>
 			</thead>
@@ -17,7 +20,10 @@
 			<tbody>
 				{% for item in items %}
 				<tr>
+					<td>{{ item.numDossier }}</td>
 					<td><a href = "{{ path("gb_gestion_bundle_planning_projets_edit", { 'id': item.id }) }}">{{ item.nom }}</a></td>
+					<td>{{ item.client }}</td>
+					<td>{{ item.pointvente }}</td>
 					<td>{{ item.id }}</td>
 				</tr>
 				{% endfor %}

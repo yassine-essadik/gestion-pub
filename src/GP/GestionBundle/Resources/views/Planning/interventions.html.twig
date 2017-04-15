@@ -9,16 +9,28 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>Nom</th>
-					<th>Id</th>
+					<th>N° Pose</th>
+					<th>Date début</th>
+					<th>Point vente</th>
+					<th>Ville</th>
+					<th>CP</th>
+					<th>Projet</th>
+					<th>Client</th>
+					<th>Poseurs</th>
 				</tr>
 			</thead>
 			{% if items|length > 0 %}
 			<tbody>
 				{% for item in items %}
 				<tr>
-					<td><a href = "{{ path("gb_gestion_bundle_planning_interventions_edit", { 'id': item.id }) }}">{{ item.nom }}</a></td>
 					<td>{{ item.id }}</td>
+					<td>{{ item.dateDebut|date('d-m-Y H:i:s') }}</td>
+					<td><a href = "{{ path("gb_gestion_bundle_planning_interventions_edit", { 'id': item.id }) }}">{{ item.projet.pointvente }}</a></td>
+					<td>{{ item.projet.pointvente.ville }}</td>
+					<td>{{ item.projet.pointvente.codePostal }}</td>
+					<td>{{ item.projet }}</td>
+					<td>{{ item.projet.client }}</td>
+					<td>{{ item.poseurs|join(', ') }}</td>
 				</tr>
 				{% endfor %}
 			</tbody>

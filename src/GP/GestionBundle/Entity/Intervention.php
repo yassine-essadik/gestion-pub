@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="intervention")
  * @ORM\Entity(repositoryClass="GP\GestionBundle\Repository\InterventionRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Intervention
 {
@@ -22,58 +23,89 @@ class Intervention
     private $id;
 
     /**
+     *
+     * @ORM\ManyToOne(targetEntity="GP\GestionBundle\Entity\InterventionType")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    
+    private $type;
+    
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="GP\GestionBundle\Entity\InterventionStatut")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    
+    private $statut;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="GP\GestionBundle\Entity\Poseur", cascade={"persist"})
+     * @ORM\JoinTable(name="intervention_poseur")
+     */
+    
+    private $poseurs;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="GP\GestionBundle\Entity\Projet")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    
+    private $projet;
+    
+    /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_demande", type="date")
+     * @ORM\Column(name="date_demande", type="date", nullable=true)
      */
     private $dateDemande;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_debut", type="datetime")
+     * @ORM\Column(name="date_debut", type="datetime", nullable=true)
      */
     private $dateDebut;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_fin", type="datetime")
+     * @ORM\Column(name="date_fin", type="datetime", nullable=true)
      */
     private $dateFin;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="laissez_passer_valide", type="smallint")
+     * @ORM\Column(name="laissez_passer_valide", type="smallint", nullable=true)
      */
     private $laissezPasserValide;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="laissez_passer_valide_par", type="string", length=255)
+     * @ORM\Column(name="laissez_passer_valide_par", type="string", length=255, nullable=true)
      */
     private $laissezPasserValidePar;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="contact_urgence", type="string", length=255)
+     * @ORM\Column(name="contact_urgence", type="string", length=255, nullable=true)
      */
     private $contactUrgence;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="commentaire", type="text")
+     * @ORM\Column(name="commentaire", type="text", nullable=true)
      */
     private $commentaire;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="brief", type="string", length=255)
+     * @ORM\Column(name="brief", type="string", length=255, nullable=true)
      */
     private $brief;
 
@@ -341,5 +373,132 @@ class Intervention
     {
         return $this->modified;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->poseurs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add poseur
+     *
+     * @param Poseur $poseur
+     *
+     * @return Intervention
+     */
+    public function addPoseur(Poseur $poseur)
+    {
+        $this->poseurs[] = $poseur;
+
+        return $this;
+    }
+
+    /**
+     * Remove poseur
+     *
+     * @param Poseur $poseur
+     */
+    public function removePoseur(Poseur $poseur)
+    {
+        $this->poseurs->removeElement($poseur);
+    }
+
+    /**
+     * Get poseurs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPoseurs()
+    {
+        return $this->poseurs;
+    }
+
+    /**
+     * Set projet
+     *
+     * @param Projet $projet
+     *
+     * @return Intervention
+     */
+    public function setProjet(Projet $projet)
+    {
+        $this->projet = $projet;
+
+        return $this;
+    }
+
+    /**
+     * Get projet
+     *
+     * @return Projet
+     */
+    public function getProjet()
+    {
+        return $this->projet;
+    }
+    
+    /**
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updatedTimestamps()
+    {
+    	$this->setModified(new \DateTime(date('Y-m-d H:i:s')));
+    
+    	if($this->getCreated() == null)
+    	{
+    		$this->setCreated(new \DateTime(date('Y-m-d H:i:s')));
+    	}
+    }
+
+    /**
+     * Set type
+     *
+     * @param InterventionType $type
+     *
+     * @return Intervention
+     */
+    public function setType(InterventionType $type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return InterventionType
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set statut
+     *
+     * @param InterventionStatut $statut
+     *
+     * @return Intervention
+     */
+    public function setStatut(InterventionStatut $statut)
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    /**
+     * Get statut
+     *
+     * @return InterventionStatut
+     */
+    public function getStatut()
+    {
+        return $this->statut;
+    }
+}

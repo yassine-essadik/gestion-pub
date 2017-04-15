@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="projet")
  * @ORM\Entity(repositoryClass="GP\GestionBundle\Repository\ProjetRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Projet
 {
@@ -20,6 +21,22 @@ class Projet
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="GP\GestionBundle\Entity\Client")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    
+    private $client;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="GP\GestionBundle\Entity\Pointvente")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    
+    private $pointvente;
     
     /**
      * @var string
@@ -38,7 +55,7 @@ class Projet
     /**
      * @var string
      *
-     * @ORM\Column(name="commercial", type="string", length=255)
+     * @ORM\Column(name="commercial", type="string", length=255, nullable=true)
      */
     private $commercial;
 
@@ -59,7 +76,7 @@ class Projet
     /**
      * @var string
      *
-     * @ORM\Column(name="descriptif", type="text")
+     * @ORM\Column(name="descriptif", type="text", nullable=true)
      */
     private $descriptif;
 
@@ -341,5 +358,72 @@ class Projet
     {
         return $this->modified;
     }
-}
 
+    /**
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updatedTimestamps()
+    {
+    	$this->setModified(new \DateTime(date('Y-m-d H:i:s')));
+    
+    	if($this->getCreated() == null)
+    	{
+    		$this->setCreated(new \DateTime(date('Y-m-d H:i:s')));
+    	}
+    }
+
+    /**
+     * Set client
+     *
+     * @param Client $client
+     *
+     * @return Projet
+     */
+    public function setClient(Client $client)
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * Get client
+     *
+     * @return Client
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * Set pointvente
+     *
+     * @param Pointvente $pointvente
+     *
+     * @return Projet
+     */
+    public function setPointvente(Pointvente $pointvente)
+    {
+        $this->pointvente = $pointvente;
+
+        return $this;
+    }
+
+    /**
+     * Get pointvente
+     *
+     * @return Pointvente
+     */
+    public function getPointvente()
+    {
+        return $this->pointvente;
+    }
+    
+    public function __toString()
+    {
+    	return $this->getNom();
+    }
+}

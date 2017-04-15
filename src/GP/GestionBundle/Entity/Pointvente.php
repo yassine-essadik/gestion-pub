@@ -483,4 +483,9 @@ class Pointvente
     {
         return $this->departement;
     }
+
+    public function __toString()
+    {
+    	return $this->getNom();
+    }
 }
