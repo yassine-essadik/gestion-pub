@@ -22,14 +22,6 @@ class Projet
     private $id;
     
     /**
-     *
-     * @ORM\ManyToOne(targetEntity="GP\GestionBundle\Entity\Chef")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    
-    private $chef;
-    
-    /**
      * @var string
      *
      * @ORM\Column(name="num_dossier", type="string", length=255)

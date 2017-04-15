@@ -3,12 +3,14 @@
 namespace GP\GestionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Poseur
  *
  * @ORM\Table(name="poseur")
  * @ORM\Entity(repositoryClass="GP\GestionBundle\Repository\PoseurRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Poseur
 {
@@ -20,18 +22,11 @@ class Poseur
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     *
-     * @ORM\ManyToOne(targetEntity="GP\GestionBundle\Entity\Societe")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    
-    private $societe;
     
     
     /**
      * @ORM\ManyToMany(targetEntity="GP\GestionBundle\Entity\Departement", cascade={"persist"})
+     * @ORM\JoinTable(name="poseur_departement")
      */
     
     private $departements;
@@ -60,30 +55,23 @@ class Poseur
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="text")
+     * @ORM\Column(name="adresse", type="text", nullable=true)
      */
     private $adresse;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="code_postal", type="string", length=10)
+     * @ORM\Column(name="code_postal", type="string", length=10, nullable=true)
      */
     private $codePostal;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ville", type="string", length=255)
+     * @ORM\Column(name="ville", type="string", length=255, nullable=true)
      */
     private $ville;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="statut", type="smallint")
-     */
-    private $statut;
 
     /**
      * @var \DateTime
@@ -255,30 +243,6 @@ class Poseur
     }
 
     /**
-     * Set statut
-     *
-     * @param integer $statut
-     *
-     * @return Poseur
-     */
-    public function setStatut($statut)
-    {
-        $this->statut = $statut;
-
-        return $this;
-    }
-
-    /**
-     * Get statut
-     *
-     * @return int
-     */
-    public function getStatut()
-    {
-        return $this->statut;
-    }
-
-    /**
      * Set created
      *
      * @param \DateTime $created
@@ -325,5 +289,61 @@ class Poseur
     {
         return $this->modified;
     }
-}
 
+    /**
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updatedTimestamps()
+    {
+    	$this->setModified(new \DateTime(date('Y-m-d H:i:s')));
+    
+    	if($this->getCreated() == null)
+    	{
+    		$this->setCreated(new \DateTime(date('Y-m-d H:i:s')));
+    	}
+    }
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->departements = new ArrayCollection();
+    }
+
+    /**
+     * Add departement
+     *
+     * @param Departement $departement
+     *
+     * @return Poseur
+     */
+    public function addDepartement(Departement $departement)
+    {
+        $this->departements[] = $departement;
+
+        return $this;
+    }
+
+    /**
+     * Remove departement
+     *
+     * @param Departement $departement
+     */
+    public function removeDepartement(Departement $departement)
+    {
+        $this->departements->removeElement($departement);
+    }
+
+    /**
+     * Get departements
+     *
+     * @return Collection
+     */
+    public function getDepartements()
+    {
+        return $this->departements;
+    }
+}

@@ -3,13 +3,13 @@
 namespace GP\GestionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Pointvente
  *
  * @ORM\Table(name="pointvente")
  * @ORM\Entity(repositoryClass="GP\GestionBundle\Repository\PointventeRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Pointvente
 {
@@ -40,79 +40,72 @@ class Pointvente
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="text")
+     * @ORM\Column(name="adresse", type="text", nullable=true)
      */
     private $adresse;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="code_postal", type="string", length=10)
+     * @ORM\Column(name="code_postal", type="string", length=10, nullable=true)
      */
     private $codePostal;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ville", type="string", length=255)
+     * @ORM\Column(name="ville", type="string", length=255, nullable=true)
      */
     private $ville;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="region", type="string", length=255)
+     * @ORM\Column(name="region", type="string", length=255, nullable=true)
      */
     private $region;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="province", type="string", length=255)
+     * @ORM\Column(name="province", type="string", length=255, nullable=true)
      */
     private $province;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="pays", type="string", length=255)
+     * @ORM\Column(name="pays", type="string", length=255, nullable=true)
      */
     private $pays;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="telephone", type="string", length=10)
+     * @ORM\Column(name="telephone", type="string", length=10, nullable=true)
      */
     private $telephone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="contact1", type="string", length=255)
+     * @ORM\Column(name="contact1", type="string", length=255, nullable=true)
      */
     private $contact1;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="contact2", type="string", length=255)
+     * @ORM\Column(name="contact2", type="string", length=255, nullable=true)
      */
     private $contact2;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     private $email;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="statut", type="smallint")
-     */
-    private $statut;
 
     /**
      * @var \DateTime
@@ -129,11 +122,6 @@ class Pointvente
     private $modified;
 
 
-   /* public function __construct()
-    {
-    	$this->departement = new ArrayCollection();
-    }
-     */ 
     /**
      * Get id
      *
@@ -409,30 +397,6 @@ class Pointvente
     }
 
     /**
-     * Set statut
-     *
-     * @param integer $statut
-     *
-     * @return Pointvente
-     */
-    public function setStatut($statut)
-    {
-        $this->statut = $statut;
-
-        return $this;
-    }
-
-    /**
-     * Get statut
-     *
-     * @return int
-     */
-    public function getStatut()
-    {
-        return $this->statut;
-    }
-
-    /**
      * Set created
      *
      * @param \DateTime $created
@@ -480,17 +444,43 @@ class Pointvente
         return $this->modified;
     }
     
+    /**
+     * 
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updatedTimestamps()
+    {
+    	$this->setModified(new \DateTime(date('Y-m-d H:i:s')));
+    
+    	if($this->getCreated() == null)
+    	{
+    		$this->setCreated(new \DateTime(date('Y-m-d H:i:s')));
+    	}
+    }
+
+
+    /**
+     * Set departement
+     *
+     * @param Departement $departement
+     *
+     * @return Pointvente
+     */
     public function setDepartement(Departement $departement)
     {
-    	$this->departement = $departement;
-    
-    	return $this;
+        $this->departement = $departement;
+
+        return $this;
     }
-    
-    
+
+    /**
+     * Get departement
+     *
+     * @return Departement
+     */
     public function getDepartement()
     {
-    	return $this->departement;
+        return $this->departement;
     }
 }
-

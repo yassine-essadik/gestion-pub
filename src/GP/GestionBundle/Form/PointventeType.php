@@ -21,11 +21,11 @@ class PointventeType extends AbstractType
         		->add('codePostal')
         		->add('ville')
         		->add('region')->add('province')->add('pays')->add('telephone')->add('contact1')->add('contact2')
-        		->add('email')->add('statut')->add('created')->add('modified')
+        		->add('email')
         		->add('departement', EntityType::class, array(
         		'class'        => 'GPGestionBundle:Departement',
         		'choice_label' => 'nom',
-        		'multiple'     => true,
+        		'multiple'     => false,
         		))
         		->add('enregistrer',SubmitType::class);
     }

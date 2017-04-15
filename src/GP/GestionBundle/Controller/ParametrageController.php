@@ -24,50 +24,6 @@ class ParametrageController extends Controller
         return $this->render('GPGestionBundle:Parametrage:index.html.twig');
     }
     
-    public function societesAction()
-    {
-    	$em = $this->getDoctrine()->getManager();
-    	
-    	$items = $em->getRepository('GPGestionBundle:Societe')->findAll();
-    	
-    	return $this->render('GPGestionBundle:Parametrage:societes.html.twig' , array('items' => $items));
-    	
-    }
-    
-    public function societeAction($id=null, Request $request)
-    {
-    	$em = $this->getDoctrine()->getManager();
-    	
-    	if(!empty($id))
-    	{
-    		$societe = $em->getRepository('GPGestionBundle:Societe')->find($id);
-    		if (empty($societe)) 
-    		{
-    			throw new NotFoundHttpException("L'enregistrement d'id ".$id." n'existe pas.");
-    		}
-    	}
-    	else
-    	{
-    		$societe = new Societe();
-    	}
-    	
-    	$form   = $this->get('form.factory')->create(SocieteType::class, $societe);
-
-    	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-    		
-    		$em->persist($societe);
-    		$em->flush();
-    		$request->getSession()->getFlashBag()->clear();
-    		$request->getSession()->getFlashBag()->add('notice', 'Elément bien enregistré.');
-
-    		return $this->redirectToRoute('gb_gestion_bundle_parametrage_societes_edit', array('id' => $societe->getId()));
-    	}
-    	
-    	return $this->render('GPGestionBundle:Parametrage:societe.html.twig', array(
-    			'form' => $form->createView(), 'item' => $societe
-    	));
-    	 
-    }
     
     public function pointventesAction()
     {
@@ -97,7 +53,7 @@ class ParametrageController extends Controller
     	}
     	
     	$form   = $this->get('form.factory')->create(PointventeType::class, $item);
-    	var_dump($form->handleRequest($request)->isValid());die;
+    	//var_dump($form->handleRequest($request)->isValid());die;
     	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
     
     		$em->persist($item);
@@ -114,53 +70,7 @@ class ParametrageController extends Controller
     
     }
     
-    
-    public function chefsAction()
-    {
-    	$em = $this->getDoctrine()->getManager();
-    
-    	$items = $em->getRepository('GPGestionBundle:Chef')->findAll();
-    
-    	return $this->render('GPGestionBundle:Parametrage:chefs.html.twig' , array('items' => $items));
-    
-    }
-    
-    public function chefAction($id=null, Request $request)
-    {
-    	$em = $this->getDoctrine()->getManager();
-    
-    	if(!empty($id))
-    	{
-    		$item = $em->getRepository('GPGestionBundle:Chef')->find($id);
-    		if (empty($item))
-    		{
-    			throw new NotFoundHttpException("L'enregistrement d'id ".$id." n'existe pas.");
-    		}
-    	}
-    	else
-    	{
-    		$item = new Chef();
-    	}
-    
-    	$form   = $this->get('form.factory')->create(ChefType::class, $item);
-    
-    	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-    
-    		$em->persist($item);
-    		$em->flush();
-    		$request->getSession()->getFlashBag()->clear();
-    		$request->getSession()->getFlashBag()->add('notice', 'Elément bien enregistré.');
-    
-    		return $this->redirectToRoute('gb_gestion_bundle_parametrage_chefs_edit', array('id' => $item->getId()));
-    	}
-    
-    	return $this->render('GPGestionBundle:Parametrage:chef.html.twig', array(
-    			'form' => $form->createView(), 'item' => $item
-    	));
-    
-    }
-
-
+   
     public function poseursAction()
     {
     	$em = $this->getDoctrine()->getManager();

@@ -93,5 +93,10 @@ class Departement
     {
         return $this->codePostal;
     }
+    
+    public function __toString()
+    {
+    	return $this->getNom();
+    }
 }
 

@@ -64,18 +64,6 @@ gb_gestion_bundle_parametrage_poseurs_edit:
     path: /parametrage/poseurs/edit/{id}
     defaults: { _controller: "GPGestionBundle:Parametrage:poseur" }
         
-gb_gestion_bundle_parametrage_chefs:
-    path: /parametrage/chefs
-    defaults: { _controller: "GPGestionBundle:Parametrage:chefs" }
-    
-gb_gestion_bundle_parametrage_chefs_new:
-    path: /parametrage/chefs/new
-    defaults: { _controller: "GPGestionBundle:Parametrage:chef" }
-    
-gb_gestion_bundle_parametrage_chefs_edit:
-    path: /parametrage/chefs/edit/{id}
-    defaults: { _controller: "GPGestionBundle:Parametrage:chef" }
-        
 gb_gestion_bundle_parametrage_pointventes:
     path: /parametrage/pointventes
     defaults: { _controller: "GPGestionBundle:Parametrage:pointventes" }
@@ -87,19 +75,7 @@ gb_gestion_bundle_parametrage_pointventes_new:
 gb_gestion_bundle_parametrage_pointventes_edit:
     path: /parametrage/pointventes/edit/{id}
     defaults: { _controller: "GPGestionBundle:Parametrage:pointvente" }
-     
-gb_gestion_bundle_parametrage_societes:
-    path: /parametrage/societes
-    defaults: { _controller: "GPGestionBundle:Parametrage:societes" }
-
-gb_gestion_bundle_parametrage_societes_new:
-    path: /parametrage/societes/new
-    defaults: { _controller: "GPGestionBundle:Parametrage:societe" }
-    
-gb_gestion_bundle_parametrage_societes_edit:
-    path: /parametrage/societes/edit/{id}
-    defaults: { _controller: "GPGestionBundle:Parametrage:societe" }
-                        
+              
 gb_gestion_bundle_options:
     path: /options
     defaults: { _controller: "GPGestionBundle:Options:index" }    
