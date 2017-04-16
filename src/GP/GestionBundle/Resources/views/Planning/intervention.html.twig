@@ -1,5 +1,17 @@
 {% extends 'GPGestionBundle::layout-default.html.twig' %}
 
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.min.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('css/chosen.min.css') }}" type="text/css" />
+{% endblock %}
+    
+{% block javascripts %}
+	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+	<script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
+	<script src="{{ asset('js/chosen.jquery.min.js') }}"></script>
+{% endblock %}    
+
 {% block incontent %}
 	<a class = "pull-right btn btn-primary" href = "{{ path("gb_gestion_bundle_planning_interventions") }}">Retour vers la liste</a>
 
@@ -9,9 +21,13 @@
 		{{ form(form) }}
 	</div>
 	
+	{% if item.brief|length > 0 %}
+		<a href="{{ asset('uploads/intervention/brief/' ~ item.brief) }}">Brief</a>
+	{% endif %}
 <script type = "text/javascript">
 $(function () {
-    $('.datetimepicker').datetimepicker();
+    $('.datetimepicker').datetimepicker({format: 'YYYY-MM-DD HH:mm:ss'});
+    $('.chosen-select').chosen();
 });
 </script>
 {% endblock %}

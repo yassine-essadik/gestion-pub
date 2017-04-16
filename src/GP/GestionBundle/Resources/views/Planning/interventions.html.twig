@@ -19,6 +19,9 @@
 					<th>Client</th>
 					<th>Poseurs</th>
 					<th>Statut</th>
+					<th>LP</th>
+					<th>Brief</th>
+					<th>Photos</th>
 				</tr>
 			</thead>
 			{% if items|length > 0 %}
@@ -35,6 +38,21 @@
 					<td>{{ item.projet.client }}</td>
 					<td>{{ item.poseurs|join(', ') }}</td>
 					<td>{{ item.statut }}</td>
+					<td>
+						{% if item.laissezPasserValide == 1 %}
+							<span class="glyphicon glyphicon-ok-sign"></span>
+						{% else %}
+							<span class="glyphicon glyphicon-remove-sign"></span>
+						{% endif %}
+					</td>
+					<td>
+						{% if item.brief|length > 0 %}
+							<span class="glyphicon glyphicon-ok-sign"></span>
+						{% else %}
+							<span class="glyphicon glyphicon-remove-sign"></span>
+						{% endif %}
+					</td>
+					<td></td>
 				</tr>
 				{% endfor %}
 			</tbody>

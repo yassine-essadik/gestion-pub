@@ -8,6 +8,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class InterventionType extends AbstractType
 {
@@ -19,25 +21,29 @@ class InterventionType extends AbstractType
         $builder->add('poseurs', EntityType::class, array(
         		'class'        => 'GPGestionBundle:Poseur',
         		'choice_label' => 'nomcomplet',
-        		'multiple'     => true
+        		'multiple'     => true,
+        		'attr' => array('class' => 'chosen-select'),
         		))
-        		->add('dateDebut', DateType::class, [
+        		->add('dateDebut', DateTimeType::class, [
         				'widget' => 'single_text',
         				'placeholder' => 'Sélectionner une date',
-        				'format' => 'dd-MM-yyyy HH:mm:ss',
         				'attr' => [
         						'class' => 'form-control input-inline datetimepicker',
         				]
         		])
-        		->add('dateFin', DateType::class, [
+        		->add('dateFin', DateTimeType::class, [
         				'widget' => 'single_text',
         				'placeholder' => 'Sélectionner une date',
-        				'format' => 'dd-MM-yyyy HH:mm:ss',
         				'attr' => [
         						'class' => 'form-control input-inline datetimepicker',
         				]
         		])
-	        	->add('laissezPasserValide')
+	        	->add('laissezPasserValide', choiceType::class, array(
+					    'choices'  => array(
+					        'Oui' => 1,
+					        'Non' => 0,
+					    )
+		        	))
 		        ->add('laissezPasserValidePar')
 		        ->add('contactUrgence')
 		        ->add('statut', EntityType::class, array(
@@ -48,11 +54,11 @@ class InterventionType extends AbstractType
 		        ->add('dateDemande', DateType::class, [
 		        		'widget' => 'single_text',
 		        		'placeholder' => 'Sélectionner une date',
-		        		'format' => 'dd-MM-yyyy',
+		        		'format' => 'yyyy-mm-dd',
 		        		'attr' => [
 		        				'class' => 'form-control input-inline datepicker',
 		        				'data-provide' => 'datepicker',
-		        				'data-date-format' => 'dd-mm-yyyy'
+		        				'data-date-format' => 'yyyy-mm-dd'
 		        		]
 		        ])
 		        ->add('type', EntityType::class, array(
@@ -61,7 +67,7 @@ class InterventionType extends AbstractType
 		        		'multiple'     => false
 		        ))
 		        ->add('commentaire')
-		        ->add('brief')
+		        ->add('brieffile')
 		        ->add('projet', EntityType::class, array(
 		        		'class'        => 'GPGestionBundle:Projet',
 		        		'choice_label' => 'nom',

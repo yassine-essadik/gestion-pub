@@ -8,7 +8,7 @@ use GP\GestionBundle\Form\ProjetType;
 use GP\GestionBundle\Entity\Intervention;
 use GP\GestionBundle\Form\InterventionType;
 use Symfony\Component\HttpFoundation\Request;
-
+use Symfony\Component\HttpFoundation\File\File;
 
 class PlanningController extends Controller
 {
@@ -39,6 +39,12 @@ class PlanningController extends Controller
     		{
     			throw new NotFoundHttpException("L'enregistrement d'id ".$id." n'existe pas.");
     		}
+    		else 
+    		{
+    			$intervention->setBriefFile(
+    					new File($this->getParameter('intervention_brief_directory').'/'.$intervention->getBrief())
+    					);
+    		}
     	}
     	else
     	{
@@ -48,6 +54,21 @@ class PlanningController extends Controller
     	$form   = $this->get('form.factory')->create(InterventionType::class, $intervention);
 
     	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+    		
+    		$file = $intervention->getBrieffile();
+    		
+    		if(!empty($file))
+    		{
+    			$fileName = md5(uniqid()).'.'.$file->guessExtension();
+    			
+    			$file->move(
+    					$this->getParameter('intervention_brief_directory'),
+    					$fileName
+    					);
+    			
+    			$intervention->setBrief($fileName);
+    		}
+
     		
     		$em->persist($intervention);
     		$em->flush();

@@ -10,7 +10,8 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-
+    intervention_directory: '%kernel.root_dir%/../web/uploads/intervention'
+    intervention_brief_directory: '%kernel.root_dir%/../web/uploads/intervention/brief'
 framework:
     #esi:             ~
     #translator:      { fallbacks: ["%locale%"] }
@@ -102,26 +103,26 @@ fos_user:
         address: essadik34@gmail.com
         sender_name: Yassine Essadik
         
-assetic:
-  debug:          '%kernel.debug%'
-  use_controller: '%kernel.debug%'
-  filters:
-    cssrewrite: ~
+#assetic:
+#  debug:          '%kernel.debug%'
+#  use_controller: '%kernel.debug%'
+#  filters:
+#    cssrewrite: ~
     
-  assets:
-        bootstrap_fonts_woff:
-            inputs:
-                - '@GPGestionBundle/Resources/public/fonts/glyphicons-halflings-regular.woff'
-            output: fonts/glyphicons-halflings-regular.woff
-        bootstrap_fonts_ttf:            
-            inputs:
-                - '@GPGestionBundle/Resources/public/fonts/glyphicons-halflings-regular.ttf'
-            output: fonts/glyphicons-halflings-regular.ttf
-        bootstrap_fonts_svg:
-            inputs:
-                - '@GPGestionBundle/Resources/public/fonts/glyphicons-halflings-regular.svg'
-            output: fonts/glyphicons-halflings-regular.svg
-        bootstrap_fonts_eot:
-            inputs:
-                - '@GPGestionBundle/Resources/public/fonts/glyphicons-halflings-regular.eot'
-            output: fonts/glyphicons-halflings-regular.eot
+#  assets:
+#        bootstrap_fonts_woff:
+#            inputs:
+#                - '@GPGestionBundle/Resources/public/fonts/glyphicons-halflings-regular.woff'
+#            output: fonts/glyphicons-halflings-regular.woff
+#        bootstrap_fonts_ttf:            
+#            inputs:
+#                - '@GPGestionBundle/Resources/public/fonts/glyphicons-halflings-regular.ttf'
+#            output: fonts/glyphicons-halflings-regular.ttf
+#        bootstrap_fonts_svg:
+#            inputs:
+#                - '@GPGestionBundle/Resources/public/fonts/glyphicons-halflings-regular.svg'
+#            output: fonts/glyphicons-halflings-regular.svg
+#        bootstrap_fonts_eot:
+#            inputs:
+#                - '@GPGestionBundle/Resources/public/fonts/glyphicons-halflings-regular.eot'
+#            output: fonts/glyphicons-halflings-regular.eot

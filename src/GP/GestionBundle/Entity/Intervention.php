@@ -3,6 +3,7 @@
 namespace GP\GestionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Intervention
@@ -106,9 +107,17 @@ class Intervention
      * @var string
      *
      * @ORM\Column(name="brief", type="string", length=255, nullable=true)
+     * 
      */
     private $brief;
 
+    /**
+     * @var string
+     *
+     * @Assert\File(mimeTypes={ "application/pdf", "image/*" })
+     */
+    private $brieffile;
+    
     /**
      * @var \DateTime
      *
@@ -326,6 +335,19 @@ class Intervention
         return $this->brief;
     }
 
+
+    public function setBriefFile($brieffile)
+    {
+    	$this->brieffile = $brieffile;
+    
+    	return $this;
+    }
+    
+
+    public function getBriefFile()
+    {
+    	return $this->brieffile;
+    }
     /**
      * Set created
      *

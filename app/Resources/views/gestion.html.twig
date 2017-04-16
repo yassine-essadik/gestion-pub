@@ -6,9 +6,20 @@
     <meta charset="UTF-8" />
     <title>{% block title %}Administration{% endblock %}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-    {% block stylesheets %}
 
-        {% stylesheets filter='cssrewrite'
+		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css" />
+		<link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}" type="text/css" />
+		<link rel="stylesheet" href="{{ asset('css/backoffice.css') }}" type="text/css" />
+		
+		<script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('js/moment.min.js') }}"></script>
+		
+	{% block stylesheets %}
+		<link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.min.css') }}" type="text/css" />
+		<link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}" type="text/css" />
+		
+        {#% stylesheets filter='cssrewrite'
         '@GPGestionBundle/Resources/public/css/bootstrap.min.css'
         '@GPGestionBundle/Resources/public/css/bootstrap-theme.min.css'
         '@GPGestionBundle/Resources/public/css/fullcalendar.min.css'
@@ -16,13 +27,16 @@
         '@GPGestionBundle/Resources/public/css/bootstrap-datepicker.min.css'
         '@GPGestionBundle/Resources/public/css/bootstrap-datetimepicker.min.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
-        {% endstylesheets %}
+        {% endstylesheets %#}
 
     {% endblock %}
     
     {% block javascripts %}
-
-        {% javascripts
+		
+		<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+		<script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
+		
+        {#% javascripts
         '@GPGestionBundle/Resources/public/js/jquery-3.1.1.min.js'
         '@GPGestionBundle/Resources/public/js/bootstrap.min.js'
         '@GPGestionBundle/Resources/public/js/moment.min.js'
@@ -31,7 +45,7 @@
         '@GPGestionBundle/Resources/public/js/bootstrap-datepicker.min.js'
         '@GPGestionBundle/Resources/public/js/bootstrap-datetimepicker.min.js' %}
         <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}
+        {% endjavascripts %#}
         
         <script>
             // get locale
