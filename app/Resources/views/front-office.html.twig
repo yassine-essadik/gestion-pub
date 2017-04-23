@@ -6,28 +6,40 @@
     <meta charset="UTF-8" />
     <title>{% block title %}Espace client{% endblock %}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('css/fullcalendar.min.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('css/backoffice.css') }}" type="text/css" />
+	
+	<script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('js/moment.min.js') }}"></script>
+	<script src="{{ asset('js/fullcalendar.min.js') }}"></script>
+	<script src="{{ asset('js/fullcalendar_local_fr.js') }}"></script>
+		
     {% block stylesheets %}
 
-        {% stylesheets filter='cssrewrite'
+        {#% stylesheets filter='cssrewrite'
         '@GPGestionBundle/Resources/public/css/bootstrap.min.css'
         '@GPGestionBundle/Resources/public/css/bootstrap-theme.min.css'
         '@GPGestionBundle/Resources/public/css/fullcalendar.min.css'
         '@GPGestionBundle/Resources/public/css/backoffice.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
-        {% endstylesheets %}
+        {% endstylesheets %#}
 
     {% endblock %}
     
     {% block javascripts %}
 
-        {% javascripts
+        {#% javascripts
         '@GPGestionBundle/Resources/public/js/jquery-3.1.1.min.js'
         '@GPGestionBundle/Resources/public/js/bootstrap.min.js'
         '@GPGestionBundle/Resources/public/js/moment.min.js'
         '@GPGestionBundle/Resources/public/js/fullcalendar.min.js'
         '@GPGestionBundle/Resources/public/js/fullcalendar_local_fr.js' %}
         <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}
+        {% endjavascripts %#}
         
         <script>
             // get locale

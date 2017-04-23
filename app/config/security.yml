@@ -47,7 +47,7 @@ security:
                 default_target_path: fos_user_profile_show
             logout:
                 path: fos_user_security_logout
-                target: gp_cms_homepage
+                target: gp_front_homepage
             anonymous:    true
 
     access_control:
