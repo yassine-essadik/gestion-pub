@@ -22,6 +22,14 @@ class Client
     private $id;
 
     /**
+     *
+     * @ORM\OneToOne(targetEntity="GP\MainBundle\Entity\User", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    
+    private $user;
+    
+    /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
@@ -324,5 +332,29 @@ class Client
     public function __toString()
     {
     	return $this->getNom();
+    }
+
+    /**
+     * Set user
+     *
+     * @param \GP\MainBundle\Entity\User $user
+     *
+     * @return Client
+     */
+    public function setUser(\GP\MainBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \GP\MainBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

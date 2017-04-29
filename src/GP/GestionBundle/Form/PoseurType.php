@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-
+use GP\MainBundle\Form\UserType;
 
 class PoseurType extends AbstractType
 {
@@ -22,6 +22,7 @@ class PoseurType extends AbstractType
         		'choice_label' => 'nom',
         		'multiple'     => true
         ))
+        ->add('user',     UserType::class)
         ->add('enregistrer',SubmitType::class);
     }
     

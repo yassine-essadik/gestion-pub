@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use GP\MainBundle\Form\UserType;
 
 class ClientType extends AbstractType
 {
@@ -21,6 +22,7 @@ class ClientType extends AbstractType
 		        ->add('codePostal')
 		        ->add('ville')
 		        ->add('pays')
+		        ->add('user',     UserType::class)
 		        ->add('enregistrer',SubmitType::class);
     }
     

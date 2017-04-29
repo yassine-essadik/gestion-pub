@@ -23,7 +23,14 @@ class Poseur
      */
     private $id;
     
+    /**
+     *
+     * @ORM\OneToOne(targetEntity="GP\MainBundle\Entity\User", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
     
+    private $user;
+        
     /**
      * @ORM\ManyToMany(targetEntity="GP\GestionBundle\Entity\Departement", cascade={"persist"})
      * @ORM\JoinTable(name="poseur_departement")
@@ -360,5 +367,29 @@ class Poseur
     public function __toString()
     {
     	return $this->getNomcomplet();
+    }
+
+    /**
+     * Set user
+     *
+     * @param \GP\MainBundle\Entity\User $user
+     *
+     * @return Poseur
+     */
+    public function setUser(\GP\MainBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \GP\MainBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
