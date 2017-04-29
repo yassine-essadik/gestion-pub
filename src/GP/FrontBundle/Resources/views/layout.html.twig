@@ -9,7 +9,7 @@
 
             <div class="">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <a href="{{ path('fos_user_security_logout') }}">{{ 'logout'|trans }}</a>
+                    <a href="{{ path('fos_user_security_logout') }}">{{ 'Se déconnecter'|trans }}</a>
                 {% endif %}
             </div><!-- /.navbar-collapse -->
 

@@ -1,36 +1,24 @@
-{% extends 'GPFrontBundle::layout.html.twig' %}
+{% extends 'GPFrontBundle::layout-default.html.twig' %}
 
-{% block content %}
+{% block incontent %}
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h2 class="panel-title">{{ 'dashboard'|trans }}</h2>
-                </div>
-                <div class="panel-body">
-                
-                
-                	<form action="">
-                		<select name = "filter_projet">
-                			<option></option>
+	<h1 class="page-header">Accueil</h1>
+	<div>
+    	<form action="">
+        	<select name = "filter_projet">
+            	<option></option>
                 			
-                				{% if projets|length > 0 %}
-									{% for projet in projets %}
+                {% if projets|length > 0 %}
+				{% for projet in projets %}
 									
-										<option value = "{{ projet.id }}" >{{ projet.nom }}</option>
+					<option value = "{{ projet.id }}" >{{ projet.nom }}</option>
 
-									{% endfor %}
-							{% endif %}
-                		</select>
+				{% endfor %}
+				{% endif %}
+            </select>
                 	
                 	
-                	</form>
-                
-                
-                
-                </div>
-            </div>
-        </div>
-    </div>
+         </form>
+	</div>
+
 {% endblock %}
