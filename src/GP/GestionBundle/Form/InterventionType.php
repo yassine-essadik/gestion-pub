@@ -54,7 +54,6 @@ class InterventionType extends AbstractType
 		        ->add('dateDemande', DateType::class, [
 		        		'widget' => 'single_text',
 		        		'placeholder' => 'Sélectionner une date',
-		        		'format' => 'yyyy-mm-dd',
 		        		'attr' => [
 		        				'class' => 'form-control input-inline datepicker',
 		        				'data-provide' => 'datepicker',
@@ -73,6 +72,8 @@ class InterventionType extends AbstractType
 		        		'choice_label' => 'nom',
 		        		'multiple'     => false
 		        ))
+		        ->add('image_avant_file')
+		        ->add('image_apres_file')
 		        ->add('enregistrer',SubmitType::class);
     }
     

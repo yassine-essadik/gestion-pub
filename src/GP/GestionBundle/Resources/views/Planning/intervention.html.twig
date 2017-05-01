@@ -24,6 +24,15 @@
 	{% if item.brief|length > 0 %}
 		<a href="{{ asset('uploads/intervention/brief/' ~ item.brief) }}">Brief</a>
 	{% endif %}
+	
+	{% if item.imageAvant|length > 0 %}
+		<img src="{{ asset('uploads/intervention/images/' ~ item.imageAvant) }}" width = "200" />
+	{% endif %}
+	
+	{% if item.imageApres|length > 0 %}
+		<img src="{{ asset('uploads/intervention/images/' ~ item.imageApres) }}" width = "200" />
+	{% endif %}
+			
 <script type = "text/javascript">
 $(function () {
     $('.datetimepicker').datetimepicker({format: 'YYYY-MM-DD HH:mm:ss'});

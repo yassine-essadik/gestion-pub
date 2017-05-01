@@ -117,6 +117,36 @@ class Intervention
      * @Assert\File(mimeTypes={ "application/pdf", "image/*" })
      */
     private $brieffile;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image_avant", type="string", length=255, nullable=true)
+     *
+     */
+    private $image_avant;
+    
+    /**
+     * @var string
+     *
+     * @Assert\File(mimeTypes={ "image/*" })
+     */
+    private $image_avant_file;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image_apres", type="string", length=255, nullable=true)
+     *
+     */
+    private $image_apres;
+    
+    /**
+     * @var string
+     *
+     * @Assert\File(mimeTypes={ "image/*" })
+     */
+    private $image_apres_file;
     
     /**
      * @var \DateTime
@@ -522,5 +552,79 @@ class Intervention
     public function getStatut()
     {
         return $this->statut;
+    }
+
+    /**
+     * Set imageAvant
+     *
+     * @param string $imageAvant
+     *
+     * @return Intervention
+     */
+    public function setImageAvant($imageAvant)
+    {
+        $this->image_avant = $imageAvant;
+
+        return $this;
+    }
+
+    /**
+     * Get imageAvant
+     *
+     * @return string
+     */
+    public function getImageAvant()
+    {
+        return $this->image_avant;
+    }
+
+    /**
+     * Set imageApres
+     *
+     * @param string $imageApres
+     *
+     * @return Intervention
+     */
+    public function setImageApres($imageApres)
+    {
+        $this->image_apres = $imageApres;
+
+        return $this;
+    }
+
+    /**
+     * Get imageApres
+     *
+     * @return string
+     */
+    public function getImageApres()
+    {
+        return $this->image_apres;
+    }
+    
+    public function setImageApresFile($imageApresFile)
+    {
+    	$this->image_apres_file = $imageApresFile;
+    
+    	return $this;
+    }
+    
+    
+    public function getImageApresFile()
+    {
+    	return $this->image_apres_file;
+    }
+    
+    public function setImageAvantFile($imageAvantFile)
+    {
+    	$this->image_avant_file = $imageAvantFile;
+    
+    	return $this;
+    }
+    
+    
+    public function getImageAvantFile()
+    {
+    	return $this->image_avant_file;
     }
 }

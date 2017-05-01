@@ -41,9 +41,28 @@ class PlanningController extends Controller
     		}
     		else 
     		{
-    			$intervention->setBriefFile(
-    					new File($this->getParameter('intervention_brief_directory').'/'.$intervention->getBrief())
-    					);
+    			if(!empty($intervention->getBrief()))
+    			{
+    				$intervention->setBriefFile(
+    						new File($this->getParameter('intervention_brief_directory').'/'.$intervention->getBrief())
+    						);    				
+    			}
+
+    			if(!empty($intervention->getImageAvant()))
+    			{
+    				$intervention->setImageAvantFile(
+    						new File($this->getParameter('intervention_images_directory').'/'.$intervention->getImageAvant())
+    						);
+    			}
+
+    			
+    			if(!empty($intervention->getImageApres()))
+    			{
+    				$intervention->setImageApresFile(
+    						new File($this->getParameter('intervention_images_directory').'/'.$intervention->getImageApres())
+    						);
+    			}
+
     		}
     	}
     	else
@@ -69,6 +88,33 @@ class PlanningController extends Controller
     			$intervention->setBrief($fileName);
     		}
 
+    		$file = $intervention->getImageAvantFile();
+    		
+    		if(!empty($file))
+    		{
+    			$fileName = md5(uniqid()).'.'.$file->guessExtension();
+    			 
+    			$file->move(
+    					$this->getParameter('intervention_images_directory'),
+    					$fileName
+    					);
+    			 
+    			$intervention->setImageAvant($fileName);
+    		}
+    		
+    		$file = $intervention->getImageApresFile();
+    		
+    		if(!empty($file))
+    		{
+    			$fileName = md5(uniqid()).'.'.$file->guessExtension();
+    			 
+    			$file->move(
+    					$this->getParameter('intervention_images_directory'),
+    					$fileName
+    					);
+    			 
+    			$intervention->setImageApres($fileName);
+    		}
     		
     		$em->persist($intervention);
     		$em->flush();
