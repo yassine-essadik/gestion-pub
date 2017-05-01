@@ -15,7 +15,9 @@ security:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
+        webservice:
+            pattern:            ^/webservice
+            security: false
         # login area for backoffice users
         backoffice:
             context: primary_auth

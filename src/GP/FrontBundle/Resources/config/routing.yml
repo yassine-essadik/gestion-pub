@@ -2,6 +2,10 @@ gp_front_homepage:
     path:     /
     defaults: { _controller: GPFrontBundle:Default:index }
 
+gp_front_webservice_login:
+    path:     /webservice/login
+    defaults: { _controller: GPFrontBundle:Webservice:login }
+    
 # SECURITY
 #gp_front_security:
  #   resource: "@GPFrontBundle/Resources/config/routing/security.yml"
