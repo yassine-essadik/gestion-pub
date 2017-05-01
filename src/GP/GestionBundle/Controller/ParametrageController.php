@@ -102,6 +102,10 @@ class ParametrageController extends Controller
     
     	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
     
+    		$user = $item->getUser();
+    		$user->setEnabled(true);
+    		$user->setRoles(array('ROLE_ADMIN'));
+    		
     		$em->persist($item);
     		$em->flush();
     		$request->getSession()->getFlashBag()->clear();
@@ -129,7 +133,8 @@ class ParametrageController extends Controller
     public function clientAction($id=null, Request $request)
     {
     	$em = $this->getDoctrine()->getManager();
-    
+    	$userManager = $this->get('fos_user.user_manager');
+    	
     	if(!empty($id))
     	{
     		$item = $em->getRepository('GPGestionBundle:Client')->find($id);
@@ -146,7 +151,11 @@ class ParametrageController extends Controller
     	$form   = $this->get('form.factory')->create(ClientType::class, $item);
     
     	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-    
+    		
+    		$user = $item->getUser();
+    		$user->setEnabled(true);
+    		$user->setRoles(array('ROLE_ADMIN'));
+			
     		$em->persist($item);
     		$em->flush();
     		$request->getSession()->getFlashBag()->clear();
