@@ -18,20 +18,90 @@
 	<h1 class="page-header">Intervention</h1>
 
 	<div class = "formulaire-bloc">
-		{{ form(form) }}
+		{{ form_start(form) }}
+		
+			{{ form_errors(form) }}
+			<div class = "container-fluid">
+				<div class = "col-md-6">
+					{{ form_row(form.poseurs) }}
+					
+					{{ form_row(form.dateDebut) }}
+					
+					{{ form_row(form.dateFin) }}
+					
+					{{ form_row(form.contactUrgence) }}
+					
+					{{ form_row(form.statut) }}
+					
+					<div class = "row">	
+						<div class = "col-md-8">
+							{{ form_row(form.brieffile) }}
+						</div>
+						<div class = "col-md-4">
+							{% if item.brief|length > 0 %}
+								<br />
+								<a target = "_blank" href="{{ asset('uploads/intervention/brief/' ~ item.brief) }}">Brief</a>
+							{% endif %}
+						</div>
+					</div>
+					<div class = "row">	
+						<div class = "col-md-8">
+							{{ form_row(form.image_avant_file) }}	
+						</div>
+						<div class = "col-md-4">
+							{% if item.imageAvant|length > 0 %}
+								<a target = "_blank" href = "{{ asset('uploads/intervention/images/' ~ item.imageAvant) }}">
+									<img src="{{ asset('uploads/intervention/images/' ~ item.imageAvant) }}" height = "100" width = "100" />
+								</a>
+								<br />
+								<br />
+							{% endif %}	
+						</div>
+					</div>
+					<div class = "row">	
+						<div class = "col-md-8">
+							{{ form_row(form.image_apres_file) }}
+						</div>
+						<div class = "col-md-4">
+							{% if item.imageApres|length > 0 %}
+								<a target = "_blank" href = "{{ asset('uploads/intervention/images/' ~ item.imageApres) }}">
+									<img src="{{ asset('uploads/intervention/images/' ~ item.imageApres) }}" height = "100" width = "100" />
+								</a>
+							{% endif %}				
+						</div>
+					</div>
+				</div>
+				<div class = "col-md-6">
+					
+					{{ form_row(form.projet) }}	
+					
+					{{ form_row(form.dateDemande) }}
+					
+					{{ form_row(form.laissezPasserValide) }}
+					
+					{{ form_row(form.laissezPasserValidePar) }}
+					
+					{{ form_row(form.type) }}
+						
+					{{ form_row(form.commentaire) }}
+			
+					{{ form_row(form.enregistrer) }}	
+					
+				</div>
+			</div>
+			
+			{{ form_rest(form) }}
+			
+		{{ form_end(form) }}
+		
+		{#{ form(form) }#}
 	</div>
 	
-	{% if item.brief|length > 0 %}
-		<a href="{{ asset('uploads/intervention/brief/' ~ item.brief) }}">Brief</a>
-	{% endif %}
+
 	
-	{% if item.imageAvant|length > 0 %}
-		<img src="{{ asset('uploads/intervention/images/' ~ item.imageAvant) }}" width = "200" />
-	{% endif %}
+
 	
-	{% if item.imageApres|length > 0 %}
-		<img src="{{ asset('uploads/intervention/images/' ~ item.imageApres) }}" width = "200" />
-	{% endif %}
+
 			
 <script type = "text/javascript">
 $(function () {

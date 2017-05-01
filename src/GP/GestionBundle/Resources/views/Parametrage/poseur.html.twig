@@ -1,13 +1,62 @@
 {% extends 'GPGestionBundle::layout-default.html.twig' %}
 
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/chosen.min.css') }}" type="text/css" />
+{% endblock %}
+    
+{% block javascripts %}
+	<script src="{{ asset('js/chosen.jquery.min.js') }}"></script>
+{% endblock %}    
+
 {% block incontent %}
 	<a class = "pull-right btn btn-primary" href = "{{ path("gb_gestion_bundle_parametrage_poseurs") }}">Retour vers la liste</a>
 
 	<h1 class="page-header">Poseur : {{ item.nom }}</h1>
 
 	<div class = "formulaire-bloc">
-		{{ form(form) }}
+
+		{{ form_start(form) }}
+		
+			{{ form_errors(form) }}
+			<div class = "container-fluid">
+				<div class = "col-md-6">
+					
+					{{ form_row(form.nom) }}
+					
+					{{ form_row(form.prenom) }}
+					
+					{{ form_row(form.telephone) }}
+					
+					{{ form_row(form.adresse) }}
+					
+					{{ form_row(form.codePostal) }}
+					
+					{{ form_row(form.ville) }}	
+					
+				</div>
+				<div class = "col-md-6">
+					
+					{{ form_row(form.departements) }}
+					
+					{{ form_row(form.user) }}
+					
+					{{ form_row(form.enregistrer) }}
+			
+				</div>
+			</div>
+			
+			{{ form_rest(form) }}
+			
+		{{ form_end(form) }}
+
+
 	</div>
 	
-	
+
+		
+<script type = "text/javascript">
+$(function () {
+    $('.chosen-select').chosen();
+});
+</script>	
 {% endblock %}

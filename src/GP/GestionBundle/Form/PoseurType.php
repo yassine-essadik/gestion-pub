@@ -16,14 +16,20 @@ class PoseurType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom')->add('prenom')->add('telephone')->add('adresse')->add('codePostal')->add('ville')
-        ->add('departements', EntityType::class, array(
-        		'class'        => 'GPGestionBundle:Departement',
-        		'choice_label' => 'nom',
-        		'multiple'     => true
-        ))
-        ->add('user',     UserType::class)
-        ->add('enregistrer',SubmitType::class);
+        $builder->add('nom')
+        		->add('prenom')
+        		->add('telephone')
+        		->add('adresse')
+        		->add('codePostal')
+        		->add('ville')
+        		->add('departements', EntityType::class, array(
+        			'class'        => 'GPGestionBundle:Departement',
+        			'choice_label' => 'nom',
+        			'multiple'     => true,
+        			'attr' => array('class' => 'chosen-select'),
+        		))
+        		->add('user',     UserType::class)
+        		->add('enregistrer',SubmitType::class);
     }
     
     /**

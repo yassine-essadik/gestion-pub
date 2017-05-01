@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class ProjetType extends AbstractType
 {
@@ -28,11 +29,35 @@ class ProjetType extends AbstractType
         				'multiple'     => false,
         		))
         		->add('commercial')
-        		->add('dateDebutPose')
-        		->add('dateFinPose')
+        		->add('dateDebutPose', DateType::class, [
+        				'widget' => 'single_text',
+        				'placeholder' => 'Sélectionner une date',
+        				'attr' => [
+        						'class' => 'form-control input-inline datepicker',
+        						'data-provide' => 'datepicker',
+        						'data-date-format' => 'yyyy-mm-dd'
+        				]
+        		])
+        		->add('dateFinPose', DateType::class, [
+        				'widget' => 'single_text',
+        				'placeholder' => 'Sélectionner une date',
+        				'attr' => [
+        						'class' => 'form-control input-inline datepicker',
+        						'data-provide' => 'datepicker',
+        						'data-date-format' => 'yyyy-mm-dd'
+        				]
+        		])
 		        ->add('descriptif')
 		        ->add('numFacture')
-		        ->add('dateFacturation')
+		        ->add('dateFacturation', DateType::class, [
+		        		'widget' => 'single_text',
+		        		'placeholder' => 'Sélectionner une date',
+		        		'attr' => [
+		        				'class' => 'form-control input-inline datepicker',
+		        				'data-provide' => 'datepicker',
+		        				'data-date-format' => 'yyyy-mm-dd'
+		        		]
+		        ])
 		        ->add('enregistrer',SubmitType::class);
     }
     
