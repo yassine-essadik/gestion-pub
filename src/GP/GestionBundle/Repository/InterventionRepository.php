@@ -10,4 +10,13 @@ namespace GP\GestionBundle\Repository;
  */
 class InterventionRepository extends \Doctrine\ORM\EntityRepository
 {
+	
+	public function getListByPoseur($id)
+	{
+		$qb = $this->createQueryBuilder('i');
+		$qb->join('i.poseurs', 'p')
+		->where($qb->expr()->eq('p.id', $id));
+		return $qb->getQuery()->getResult();
+	}
+	
 }
