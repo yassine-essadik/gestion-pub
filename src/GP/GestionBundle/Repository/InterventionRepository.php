@@ -15,7 +15,8 @@ class InterventionRepository extends \Doctrine\ORM\EntityRepository
 	{
 		$qb = $this->createQueryBuilder('i');
 		$qb->join('i.poseurs', 'p')
-		->where($qb->expr()->eq('p.id', $id));
+		->where($qb->expr()->eq('p.id', $id))
+		->orderBy('i.dateDebut');
 		return $qb->getQuery()->getResult();
 	}
 	

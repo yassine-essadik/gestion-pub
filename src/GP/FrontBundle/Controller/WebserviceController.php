@@ -98,4 +98,55 @@ class WebserviceController extends Controller
     	echo json_encode($response);
     	exit;
     }
+
+    public function interventionAction(Request $request)
+    {
+    	$id = $request->get('id');
+    	$poseur = $request->get('poseur');
+    	
+    	$em = $this->getDoctrine()->getManager();
+    	$poseur = $em->getRepository('GPGestionBundle:Poseur')->findOneById($poseur);
+    	 
+    	$response = new \stdClass();
+    	 
+    	if(!empty($poseur))
+    	{
+    		
+    		$item = $em->getRepository('GPGestionBundle:Intervention')->findOneById($id);
+    
+    		if(!empty($item))
+    		{
+    			$response->success = true;
+    			
+    			$intervention = new \stdClass();
+    			$intervention->id = $item->getId();
+    			$intervention->title = $item->getType() . ' : ' . $item->getProjet()->getPointvente();
+    			$intervention->date_start = $item->getDateDebut();
+    			$intervention->date_end = $item->getDateFin();
+    			$intervention->projet = $item->getProjet()->getNom();
+    			$intervention->laissez_passer_valide = $item->getLaissezPasserValide();
+    			$intervention->contact_urgence = $item->getContactUrgence();
+    			$intervention->statut = $item->getStatut()->getNom();
+    			
+    			$response->intervention = $intervention;    			
+    			
+    		}
+    		else 
+    		{
+    			$response->success = false;
+    			$response->message = "Intervention introuvable.";
+    		}
+
+    	}
+    	else
+    	{
+    		$response->success = false;
+    		$response->message = "Poseur introuvable.";
+    	}
+    	 
+    	header('Content-Type: application/json');
+    	echo json_encode($response);
+    	exit;
+    }
+    
 }
