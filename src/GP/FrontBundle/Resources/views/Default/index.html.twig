@@ -4,14 +4,17 @@
 
 	<h1 class="page-header">Accueil</h1>
 	<div>
-    	<form action="">
-        	<select name = "filter_projet">
+    	<form action="" method="POST">
+        	<select name = "filter_projet" onchange="this.form.submit();">
             	<option></option>
                 			
                 {% if projets|length > 0 %}
 				{% for projet in projets %}
-									
-					<option value = "{{ projet.id }}" >{{ projet.nom }}</option>
+			        {% set selected = '' %}
+			        {% if projet_selected == projet.id %}
+			           {% set selected = 'selected' %}
+			        {% endif %}									
+					<option value = "{{ projet.id }}" {{ selected }} >{{ projet.nom }}</option>
 
 				{% endfor %}
 				{% endif %}
@@ -19,7 +22,10 @@
                 	
                 	
          </form>
-         <canvas id="myChart" width="250" height="250"></canvas>
+         <div class = "col-md-6">
+         	<canvas id="myChart" width="250" height="250"></canvas>
+         </div>
+         
          
 	</div>
 
@@ -30,22 +36,41 @@ $(function () {
 		
 	var data = {
 		    labels: [
-		        "Red",
-		        "Blue",
-		        "Yellow"
+					{% if status_name|length > 0 %}
+						{% for statut_name in status_name %}
+											
+							"{{ statut_name }}",
+						
+						{% endfor %}
+					{% endif %}
 		    ],
 		    datasets: [
 		        {
-		            data: [300, 50, 100],
+		            data: [
+						{% if data|length > 0 %}
+							{% for row in data %}
+												
+								{{ row }},
+							
+							{% endfor %}
+						{% endif %}
+
+				    ],
 		            backgroundColor: [
+		                "#E5E5E5",
 		                "#FF6384",
+		                "#CC65FE",
+		                "#FFCE56",
 		                "#36A2EB",
-		                "#FFCE56"
+		                "#AACD4E"
 		            ],
 		            hoverBackgroundColor: [
+		                "#E5E5E5",
 		                "#FF6384",
+		                "#CC65FE",
+		                "#FFCE56",
 		                "#36A2EB",
-		                "#FFCE56"
+		                "#AACD4E"
 		            ]
 		        }]
 		};

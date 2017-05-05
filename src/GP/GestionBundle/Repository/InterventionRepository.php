@@ -19,5 +19,20 @@ class InterventionRepository extends \Doctrine\ORM\EntityRepository
 		->orderBy('i.dateDebut');
 		return $qb->getQuery()->getResult();
 	}
-	
+
+	public function getListByClientStatut($id, $statut, $projet)
+	{
+		$qb = $this->createQueryBuilder('i');
+		$qb->join('i.projet', 'p')
+		->join('p.client', 'c')
+		->where($qb->expr()->eq('c.id', $id))
+		->andWhere($qb->expr()->eq('i.statut', $statut));
+		if(!empty($projet))
+			$qb->andWhere($qb->expr()->eq('p.id', $projet));
+		$qb->groupBy('i.id');
+		
+		$result = $qb->getQuery()->getResult();
+		
+		return $result;
+	}
 }
