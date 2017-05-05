@@ -3,27 +3,33 @@
 {% block incontent %}
 
 	<h1 class="page-header">Accueil</h1>
-	<div>
-    	<form action="" method="POST">
-        	<select name = "filter_projet" onchange="this.form.submit();">
-            	<option></option>
-                			
-                {% if projets|length > 0 %}
-				{% for projet in projets %}
-			        {% set selected = '' %}
-			        {% if projet_selected == projet.id %}
-			           {% set selected = 'selected' %}
-			        {% endif %}									
-					<option value = "{{ projet.id }}" {{ selected }} >{{ projet.nom }}</option>
-
-				{% endfor %}
-				{% endif %}
-            </select>
-                	
-                	
-         </form>
-         <div class = "col-md-6">
-         	<canvas id="myChart" width="250" height="250"></canvas>
+	<div class = "container-fluid">
+		<div class = "col-md-2">
+	    	<form action="" method="POST">
+	        	<select name = "filter_projet" onchange="this.form.submit();">
+	            	<option></option>
+	                			
+	                {% if projets|length > 0 %}
+					{% for projet in projets %}
+				        {% set selected = '' %}
+				        {% if projet_selected == projet.id %}
+				           {% set selected = 'selected' %}
+				        {% endif %}									
+						<option value = "{{ projet.id }}" {{ selected }} >{{ projet.nom }}</option>
+	
+					{% endfor %}
+					{% endif %}
+	            </select>
+	                	
+	                	
+	         </form>
+         </div>
+         <div class = "col-md-10">
+         	  <div class = "col-md-10">
+         		<canvas id="myChart" width="250" height="250"></canvas>
+         	  </div>
+         	  <div class = "col-md-2">
+         	  </div>
          </div>
          
          
@@ -33,7 +39,7 @@
 $(function () {
 
 	var ctx = document.getElementById("myChart");
-		
+	ctx.height = 150;	
 	var data = {
 		    labels: [
 					{% if status_name|length > 0 %}
