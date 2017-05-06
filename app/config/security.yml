@@ -32,7 +32,7 @@ security:
                 default_target_path: gb_gestion_bundle_planning
             logout:
                 path: gp_gestion_security_logout
-                target: gp_cms_homepage
+                target: gb_gestion_bundle_planning
             anonymous:    true
 
         # defaut login area for standard users

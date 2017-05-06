@@ -15,9 +15,10 @@
 	        </div>	
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav">
-	            <!-- <li class="{% if app.request.get('_route') == 'gb_gestion_bundle_home' %} active{% endif %}">
-	            	<a href="{{ path("gb_gestion_bundle_home") }}">Accueil</a>
-	            </li>-->
+	            
+{# 	            <li class="{% if app.request.get('_route') == 'gb_gestion_bundle_home' %} active{% endif %}">#}
+{# 	            	<a href="{{ path("gb_gestion_bundle_home") }}">Accueil</a>#}
+{# 	            </li>#}
 	            <li class="{% if app.request.get('_route') == 'gb_gestion_bundle_planning' %} active{% endif %}">
 	            	<a href="{{ path("gb_gestion_bundle_planning") }}">Planning</a>
 	            </li>
@@ -29,7 +30,7 @@
 	            </li>
 	            <li class="">
 	                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-	                    <a href="{{ path('fos_user_security_logout') }}">{{ 'Se déconnecter'|trans }}</a>
+	                    <a href="{{ path('gp_gestion_security_logout') }}">{{ 'Se déconnecter'|trans }}</a>
 	                {% endif %}
 	            </li>	
 

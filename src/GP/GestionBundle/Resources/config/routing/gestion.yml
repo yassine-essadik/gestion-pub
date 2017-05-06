@@ -1,11 +1,11 @@
-gb_gestion_bundle_home:
-    path: /
-    defaults: { _controller: "GPGestionBundle:Default:index" }
-    requirements:
-        _method: GET
-        
+#gb_gestion_bundle_home:
+#    path: /
+#    defaults: { _controller: "GPGestionBundle:Default:index" }
+#    requirements:
+#        _method: GET
+#        
 gb_gestion_bundle_planning:
-    path: /planning
+    path: /
     defaults: { _controller: "GPGestionBundle:Planning:index" }
     
 gb_gestion_bundle_planning_interventions:
