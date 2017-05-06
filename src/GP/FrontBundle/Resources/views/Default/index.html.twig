@@ -2,11 +2,13 @@
 
 {% block incontent %}
 
-	<h1 class="page-header">Accueil</h1>
+	<h1 class="page-header">Espace client</h1>
 	<div class = "container-fluid">
-		<div class = "col-md-2">
+		<div class = "col-md-4">
 	    	<form action="" method="POST">
-	        	<select name = "filter_projet" onchange="this.form.submit();">
+	    	
+	    		<label for = "filter_projet">Sélectionner un projet :</label>
+	        	<select name = "filter_projet" id = "filter_projet" onchange="this.form.submit();">
 	            	<option></option>
 	                			
 	                {% if projets|length > 0 %}
@@ -24,7 +26,7 @@
 	                	
 	         </form>
          </div>
-         <div class = "col-md-10">
+         <div class = "col-md-8">
          	  <div class = "col-md-10">
          		<canvas id="myChart" width="250" height="250"></canvas>
          	  </div>
