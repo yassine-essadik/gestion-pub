@@ -107,6 +107,10 @@
 $(function () {
     $('.datetimepicker').datetimepicker({format: 'YYYY-MM-DD HH:mm:ss'});
     $('.chosen-select').chosen();
+    $('.datepicker').datepicker()
+    .on('changeDate', function(ev){                 
+        $(this).datepicker('hide');
+    });
 });
 </script>
 {% endblock %}

@@ -46,5 +46,12 @@
 
 	</div>
 	
-	
+<script type = "text/javascript">
+$(function () {
+    $('.datepicker').datepicker()
+    .on('changeDate', function(ev){                 
+        $(this).datepicker('hide');
+    });
+});
+</script>	
 {% endblock %}
