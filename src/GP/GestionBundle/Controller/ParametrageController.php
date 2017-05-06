@@ -61,7 +61,9 @@ class ParametrageController extends Controller
     		$request->getSession()->getFlashBag()->clear();
     		$request->getSession()->getFlashBag()->add('notice', 'Elément bien enregistré.');
     
-    		return $this->redirectToRoute('gb_gestion_bundle_parametrage_pointventes_edit', array('id' => $item->getId()));
+    		//return $this->redirectToRoute('gb_gestion_bundle_parametrage_pointventes_edit', array('id' => $item->getId()));
+    		return $this->redirectToRoute('gb_gestion_bundle_parametrage_pointventes');
+    		
     	}
     	 
     	return $this->render('GPGestionBundle:Parametrage:pointvente.html.twig', array(
@@ -111,7 +113,9 @@ class ParametrageController extends Controller
     		$request->getSession()->getFlashBag()->clear();
     		$request->getSession()->getFlashBag()->add('notice', 'Elément bien enregistré.');
     
-    		return $this->redirectToRoute('gb_gestion_bundle_parametrage_poseurs_edit', array('id' => $item->getId()));
+    		//return $this->redirectToRoute('gb_gestion_bundle_parametrage_poseurs_edit', array('id' => $item->getId()));
+    		return $this->redirectToRoute('gb_gestion_bundle_parametrage_poseurs');
+    		
     	}
     
     	return $this->render('GPGestionBundle:Parametrage:poseur.html.twig', array(
@@ -161,7 +165,9 @@ class ParametrageController extends Controller
     		$request->getSession()->getFlashBag()->clear();
     		$request->getSession()->getFlashBag()->add('notice', 'Elément bien enregistré.');
     
-    		return $this->redirectToRoute('gb_gestion_bundle_parametrage_clients_edit', array('id' => $item->getId()));
+    		//return $this->redirectToRoute('gb_gestion_bundle_parametrage_clients_edit', array('id' => $item->getId()));
+    		return $this->redirectToRoute('gb_gestion_bundle_parametrage_clients');
+    		
     	}
     
     	return $this->render('GPGestionBundle:Parametrage:client.html.twig', array(

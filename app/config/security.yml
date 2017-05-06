@@ -28,8 +28,8 @@ security:
                 use_forward:    true
                 use_referer:    true
                 check_path:     gp_gestion_security_check
-                failure_path:   gb_gestion_bundle_home
-                default_target_path: gb_gestion_bundle_home
+                failure_path:   gb_gestion_bundle_planning
+                default_target_path: gb_gestion_bundle_planning
             logout:
                 path: gp_gestion_security_logout
                 target: gp_cms_homepage

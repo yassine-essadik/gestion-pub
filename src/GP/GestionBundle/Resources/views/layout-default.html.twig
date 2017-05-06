@@ -15,9 +15,9 @@
 	        </div>	
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav">
-	            <li class="{% if app.request.get('_route') == 'gb_gestion_bundle_home' %} active{% endif %}">
+	            <!-- <li class="{% if app.request.get('_route') == 'gb_gestion_bundle_home' %} active{% endif %}">
 	            	<a href="{{ path("gb_gestion_bundle_home") }}">Accueil</a>
-	            </li>
+	            </li>-->
 	            <li class="{% if app.request.get('_route') == 'gb_gestion_bundle_planning' %} active{% endif %}">
 	            	<a href="{{ path("gb_gestion_bundle_planning") }}">Planning</a>
 	            </li>
@@ -27,6 +27,12 @@
 	            <li class="{% if app.request.get('_route') == 'gb_gestion_bundle_options' %} active{% endif %}">
 	            	<a href="{{ path("gb_gestion_bundle_options") }}">Options</a>
 	            </li>
+	            <li class="">
+	                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+	                    <a href="{{ path('fos_user_security_logout') }}">{{ 'Se déconnecter'|trans }}</a>
+	                {% endif %}
+	            </li>	
+
 	            {#}
 	            <li class="dropdown">
 	              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -43,7 +49,7 @@
 	            {#}
 	          </ul>
 	        </div><!--/.nav-collapse -->			        
-	        			
+        			
 		</div>
 	</nav>    
 			

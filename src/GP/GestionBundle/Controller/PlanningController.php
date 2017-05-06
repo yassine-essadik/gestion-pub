@@ -121,7 +121,9 @@ class PlanningController extends Controller
     		$request->getSession()->getFlashBag()->clear();
     		$request->getSession()->getFlashBag()->add('notice', 'Elément bien enregistré.');
 
-    		return $this->redirectToRoute('gb_gestion_bundle_planning_interventions_edit', array('id' => $intervention->getId()));
+    		//return $this->redirectToRoute('gb_gestion_bundle_planning_interventions_edit', array('id' => $intervention->getId()));
+    		return $this->redirectToRoute('gb_gestion_bundle_planning_interventions');
+    		
     	}
     	
     	return $this->render('GPGestionBundle:Planning:intervention.html.twig', array(
@@ -166,7 +168,9 @@ class PlanningController extends Controller
     		$request->getSession()->getFlashBag()->clear();
     		$request->getSession()->getFlashBag()->add('notice', 'Elément bien enregistré.');
 
-    		return $this->redirectToRoute('gb_gestion_bundle_planning_projets_edit', array('id' => $projet->getId()));
+    		//return $this->redirectToRoute('gb_gestion_bundle_planning_projets_edit', array('id' => $projet->getId()));
+    		return $this->redirectToRoute('gb_gestion_bundle_planning_projets');
+    		
     	}
     	
     	return $this->render('GPGestionBundle:Planning:projet.html.twig', array(
