@@ -1,0 +1,5 @@
+gp_poseur_homepage:
+    path:     /
+    defaults: { _controller: GPPoseurBundle:Default:index }
+    
+    

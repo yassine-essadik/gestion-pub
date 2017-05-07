@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new GP\FrontBundle\GPFrontBundle(),
             new GP\CmsBundle\GPCmsBundle(),
         	//new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new GP\PoseurBundle\GPPoseurBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

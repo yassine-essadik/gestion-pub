@@ -86,6 +86,8 @@ class WebserviceController extends Controller
 				$intervention->laissez_passer_valide = $item->getLaissezPasserValide();
 				$intervention->contact_urgence = $item->getContactUrgence();
 				$intervention->statut = $item->getStatut()->getNom();
+				$intervention->latitude = $item->getProjet()->getPointvente()->getLatitude();
+				$intervention->longitude = $item->getProjet()->getPointvente()->getLongitude();
 				
 				$list[] = $intervention;
     		}
@@ -131,6 +133,8 @@ class WebserviceController extends Controller
     			$intervention->laissez_passer_valide = $item->getLaissezPasserValide();
     			$intervention->contact_urgence = $item->getContactUrgence();
     			$intervention->statut = $item->getStatut()->getNom();
+    			$intervention->latitude = $item->getProjet()->getPointvente()->getLatitude();
+    			$intervention->longitude = $item->getProjet()->getPointvente()->getLongitude();
     			
     			$response->intervention = $intervention;    			
     			

@@ -2,10 +2,15 @@
 #    resource: "@GPCmsBundle/Resources/config/routing.yml"
 #   prefix:   /
 
+
+gp_poseur:
+    resource: "@GPPoseurBundle/Resources/config/routing.yml"
+    prefix:   /poseur
+    
 gp_front:
     resource: "@GPFrontBundle/Resources/config/routing.yml"
     prefix:   /
-
+    
 gp_gestion:
     resource: "@GPGestionBundle/Resources/config/routing.yml"
     prefix:   /admin

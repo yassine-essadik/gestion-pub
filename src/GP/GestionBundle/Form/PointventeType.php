@@ -31,6 +31,8 @@ class PointventeType extends AbstractType
         		'choice_label' => 'nom',
         		'multiple'     => false,
         		))
+        		->add('latitude')
+        		->add('longitude')
         		->add('enregistrer',SubmitType::class);
     }
     

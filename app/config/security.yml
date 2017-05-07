@@ -35,6 +35,23 @@ security:
                 target: gb_gestion_bundle_planning
             anonymous:    true
 
+        # login area for backoffice users
+        poseur:
+            context: primary_auth
+            pattern:            ^/poseur
+            form_login:
+                provider:       fos_userbundle
+                login_path:     fos_user_security_login
+                use_forward:    true
+                use_referer:    true
+                check_path:     fos_user_security_check
+                #failure_path:   gb_gestion_bundle_planning
+                default_target_path: gp_poseur_homepage
+            logout:
+                path: fos_user_security_logout
+                target: gp_poseur_homepage
+            anonymous:    true
+
         # defaut login area for standard users
         main:
             context: primary_auth
