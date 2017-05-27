@@ -54,7 +54,6 @@ class WebserviceController extends Controller
 			$response->success = false;
 			$response->message = "Utilisateur introuvable.";
 		}
-    	//{"success":true,"id":"281","name":"Commercial","email":"contactshoppinn@gmail.com","token":"c357d30bbf2bc48d2c4eef0b60f1a3c39367258ddf4ac3f464aec01451880318a76b8fb88d63c372"}
 		header('Content-Type: application/json');
     	echo json_encode($response);
     	exit;
@@ -63,7 +62,7 @@ class WebserviceController extends Controller
     public function listAction(Request $request)
     {
     	$id = $request->get('id');
-    	
+    	$today = $request->get('today', 0);
     	$em = $this->getDoctrine()->getManager();
     	$poseur = $em->getRepository('GPGestionBundle:Poseur')->findOneById($id);
     	
@@ -72,7 +71,7 @@ class WebserviceController extends Controller
     	if(!empty($poseur))
     	{
     		$response->success = true;
-    		$items = $em->getRepository('GPGestionBundle:Intervention')->getListByPoseur($id);
+    		$items = $em->getRepository('GPGestionBundle:Intervention')->getListByPoseur($id, $today);
 
     		$list = array();
     		foreach ($items as $item)
@@ -157,4 +156,17 @@ class WebserviceController extends Controller
     	exit;
     }
     
+    
+    
+    public function saveAction(Request $request)
+    {
+    	echo '<pre>';
+    	echo 'Request :';
+    	var_dump($_REQUEST);	
+    	
+    	echo 'Files :';
+    	var_dump($_FILES);
+    	
+    	die;
+    }
 }

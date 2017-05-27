@@ -12,6 +12,9 @@ gp_front_webservice_list:
 gp_front_webservice_intervention:
     path:     /webservice/intervention
     defaults: { _controller: GPFrontBundle:Webservice:intervention }        
+gp_front_webservice_intervention_save:
+    path:     /webservice/save
+    defaults: { _controller: GPFrontBundle:Webservice:save }    
 # SECURITY
 #gp_front_security:
  #   resource: "@GPFrontBundle/Resources/config/routing/security.yml"
