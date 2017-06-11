@@ -25,10 +25,36 @@ class ParametrageController extends Controller
     }
     
     
-    public function pointventesAction()
+    public function pointventesAction(Request $request)
     {
     	$em = $this->getDoctrine()->getManager();
     	 
+    	// Delete Items
+    	if ($request->isMethod('POST'))
+    	{
+    		$task = $request->get('task');
+    		 
+    		switch($task)
+    		{
+    			case 'delete':
+    				$cid = $request->get('cid');
+    				if(!empty($cid))
+    				{
+    					foreach ($cid as $one)
+    					{
+    						$item_delete = $em->getRepository('GPGestionBundle:Pointvente')->find($one);
+    						$em->remove($item_delete);
+    					}
+    					$em->flush();
+    				}
+    				$request->getSession()->getFlashBag()->clear();
+    				$request->getSession()->getFlashBag()->add('notice', 'Les éléments ont bien été supprimés.');
+    				break;
+    		}
+    		 
+    	}
+    	//
+    	
     	$items = $em->getRepository('GPGestionBundle:Pointvente')->findAll();
     	 
     	return $this->render('GPGestionBundle:Parametrage:pointventes.html.twig' , array('items' => $items));
@@ -73,10 +99,36 @@ class ParametrageController extends Controller
     }
     
    
-    public function poseursAction()
+    public function poseursAction(Request $request)
     {
     	$em = $this->getDoctrine()->getManager();
     
+    	// Delete Items
+    	if ($request->isMethod('POST'))
+    	{
+    		$task = $request->get('task');
+    		 
+    		switch($task)
+    		{
+    			case 'delete':
+    				$cid = $request->get('cid');
+    				if(!empty($cid))
+    				{
+    					foreach ($cid as $one)
+    					{
+    						$item_delete = $em->getRepository('GPGestionBundle:Poseur')->find($one);
+    						$em->remove($item_delete);
+    					}
+    					$em->flush();
+    				}
+    				$request->getSession()->getFlashBag()->clear();
+    				$request->getSession()->getFlashBag()->add('notice', 'Les éléments ont bien été supprimés.');
+    				break;
+    		}
+    		 
+    	}
+    	//
+    	
     	$items = $em->getRepository('GPGestionBundle:Poseur')->findAll();
     
     	return $this->render('GPGestionBundle:Parametrage:poseurs.html.twig' , array('items' => $items));
@@ -124,10 +176,36 @@ class ParametrageController extends Controller
     
     }
  
-    public function clientsAction()
+    public function clientsAction(Request $request)
     {
     	$em = $this->getDoctrine()->getManager();
     
+    	// Delete Items
+    	if ($request->isMethod('POST'))
+    	{
+    		$task = $request->get('task');
+    		 
+    		switch($task)
+    		{
+    			case 'delete':
+    				$cid = $request->get('cid');
+    				if(!empty($cid))
+    				{
+    					foreach ($cid as $one)
+    					{
+    						$item_delete = $em->getRepository('GPGestionBundle:Client')->find($one);
+    						$em->remove($item_delete);
+    					}
+    					$em->flush();
+    				}
+    				$request->getSession()->getFlashBag()->clear();
+    				$request->getSession()->getFlashBag()->add('notice', 'Les éléments ont bien été supprimés.');
+    				break;
+    		}
+    		 
+    	}
+    	//
+    	
     	$items = $em->getRepository('GPGestionBundle:Client')->findAll();
     
     	return $this->render('GPGestionBundle:Parametrage:clients.html.twig' , array('items' => $items));

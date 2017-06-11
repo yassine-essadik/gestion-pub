@@ -1,38 +1,68 @@
 {% extends 'GPGestionBundle::layout-default.html.twig' %}
 
 {% block incontent %}
+	<a id = "delete_button" href="javascript:void(0);" class="pull-right btn btn-danger" style = "margin-left:10px" >Supprimer</a>
+	
 	<a href="{{ path("gb_gestion_bundle_parametrage_clients_new") }}" class="pull-right btn btn-success" >Nouveau</a>
 
 	<h1 class="page-header">Liste des clients</h1>
 
-	<div class="table-responsive">
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Entreprise</th>
-					<th>Nom</th>
-					<th>Ville</th>
-					<th>Pays</th>
-					<th>Id</th>
-				</tr>
-			</thead>
-			{% if items|length > 0 %}
-			<tbody>
-				{% for item in items %}
-				<tr>
-					<td>
-						<a href = "{{ path("gb_gestion_bundle_parametrage_clients_edit", { 'id': item.id }) }}">
-							{{ item.entreprise }}
-						</a>
-					</td>
-					<td>{{ item.nom }}</td>
-					<td>{{ item.ville }}</td>
-					<td>{{ item.pays }}</td>
-					<td>{{ item.id }}</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-			{% endif %}
-		</table>
-	</div>	
+	<form action = "" name = "list_form" id = "list_form" method="post">
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Entreprise</th>
+						<th>Nom</th>
+						<th>Ville</th>
+						<th>Pays</th>
+						<th>Id</th>
+					</tr>
+				</thead>
+				{% if items|length > 0 %}
+				<tbody>
+					{% for item in items %}
+					<tr>
+						<td><input type = "checkbox" name = "cid[]" value = "{{ item.id }}" /></td>
+						<td>
+							<a href = "{{ path("gb_gestion_bundle_parametrage_clients_edit", { 'id': item.id }) }}">
+								{{ item.entreprise }}
+							</a>
+						</td>
+						<td>{{ item.nom }}</td>
+						<td>{{ item.ville }}</td>
+						<td>{{ item.pays }}</td>
+						<td>{{ item.id }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+				{% endif %}
+			</table>
+		</div>	
+		<input type = "hidden" name = "task" id = "task" value = "" />
+	</form>
+	
+<script type = "text/javascript">
+$(function () {
+    $('#delete_button').click(function() {
+
+    	var checked = $('input[name="cid[]"]:checked').length > 0;
+    	if(checked)
+    	{
+        	var r = confirm("Êtes vous sûr de vouloir supprimer ces éléments ?");
+        	if (r == true) {
+        		$('#task').val('delete');
+        		$('#list_form').submit();
+        	} 
+    	}
+    	else
+    	{
+			alert('Merci de sélectionner des éléments à supprimer.');
+    	}
+
+		
+    });
+});
+</script>		
 {% endblock %}

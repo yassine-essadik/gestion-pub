@@ -48,8 +48,8 @@ class Intervention
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="GP\GestionBundle\Entity\Projet")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="GP\GestionBundle\Entity\Projet", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     
     private $projet;

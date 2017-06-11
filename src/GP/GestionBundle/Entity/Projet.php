@@ -32,8 +32,8 @@ class Projet
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="GP\GestionBundle\Entity\Pointvente")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="GP\GestionBundle\Entity\Pointvente", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     
     private $pointvente;

@@ -18,9 +18,35 @@ class PlanningController extends Controller
     }
     
     
-    public function interventionsAction()
+    public function interventionsAction(Request $request)
     {
     	$em = $this->getDoctrine()->getManager();
+    	
+    	// Delete Items
+    	if ($request->isMethod('POST'))
+    	{
+    		$task = $request->get('task');
+    		
+    		switch($task)
+    		{
+    			case 'delete':
+    				$cid = $request->get('cid');
+					if(!empty($cid))
+					{
+						foreach ($cid as $one)
+						{
+							$item_delete = $em->getRepository('GPGestionBundle:Intervention')->find($one);
+							$em->remove($item_delete);
+						}
+						$em->flush();
+					}
+					$request->getSession()->getFlashBag()->clear();
+					$request->getSession()->getFlashBag()->add('notice', 'Les éléments ont bien été supprimés.');
+    				break;
+    		}
+    		
+    	}
+    	//
     	
     	$items = $em->getRepository('GPGestionBundle:Intervention')->findAll();
     	
@@ -132,9 +158,36 @@ class PlanningController extends Controller
     	 
     }
     
-    public function projetsAction()
+    public function projetsAction(Request $request)
     {
     	$em = $this->getDoctrine()->getManager();
+    	
+    	
+    	// Delete Items
+    	if ($request->isMethod('POST'))
+    	{
+    		$task = $request->get('task');
+    	
+    		switch($task)
+    		{
+    			case 'delete':
+    				$cid = $request->get('cid');
+    				if(!empty($cid))
+    				{
+    					foreach ($cid as $one)
+    					{
+    						$item_delete = $em->getRepository('GPGestionBundle:Projet')->find($one);
+    						$em->remove($item_delete);
+    					}
+    					$em->flush();
+    				}
+    				$request->getSession()->getFlashBag()->clear();
+    				$request->getSession()->getFlashBag()->add('notice', 'Les éléments ont bien été supprimés.');
+    				break;
+    		}
+    	
+    	}
+    	//
     	
     	$items = $em->getRepository('GPGestionBundle:Projet')->findAll();
     	

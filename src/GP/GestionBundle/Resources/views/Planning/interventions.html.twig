@@ -1,69 +1,100 @@
 {% extends 'GPGestionBundle::layout-default.html.twig' %}
 
 {% block incontent %}
+	
+	<a id = "delete_button" href="javascript:void(0);" class="pull-right btn btn-danger" style = "margin-left:10px" >Supprimer</a>
+	
 	<a href="{{ path("gb_gestion_bundle_planning_interventions_new") }}" class="pull-right btn btn-success" >Nouveau</a>
 
 	<h1 class="page-header">Liste des interventions</h1>
+	<form action = "" name = "list_form" id = "list_form" method="post">
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th></th>
+						<th>N° Pose</th>
+						<th>Date début</th>
+						<th>Point vente</th>
+						<th>Ville</th>
+						<th>CP</th>
+						<th>Projet</th>
+						<th>Type d'intervention</th>
+						<th>Client</th>
+						<th>Poseurs</th>
+						<th>Statut</th>
+						<th>LP</th>
+						<th>Brief</th>
+						<th>Photos</th>
+					</tr>
+				</thead>
+				{% if items|length > 0 %}
+				<tbody>
+					{% for item in items %}
+					<tr>
+						<td><input type = "checkbox" name = "cid[]" value = "{{ item.id }}" /></td>
+						<td>{{ item.id }}</td>
+						<td>{{ item.dateDebut|date('d-m-Y H:i:s') }}</td>
+						<td><a href = "{{ path("gb_gestion_bundle_planning_interventions_edit", { 'id': item.id }) }}">{{ item.projet.pointvente }}</a></td>
+						<td>{{ item.projet.pointvente.ville }}</td>
+						<td>{{ item.projet.pointvente.codePostal }}</td>
+						<td>{{ item.projet }}</td>
+						<td>{{ item.type }}</td>
+						<td>{{ item.projet.client }}</td>
+						<td>{{ item.poseurs|join(', ') }}</td>
+						<td>{{ item.statut }}</td>
+						<td>
+							{% if item.laissezPasserValide == 1 %}
+								<span class="glyphicon glyphicon-ok-sign"></span>
+							{% else %}
+								<span class="glyphicon glyphicon-remove-sign"></span>
+							{% endif %}
+						</td>
+						<td>
+							{% if item.brief|length > 0 %}
+								<span class="glyphicon glyphicon-ok-sign"></span>
+							{% else %}
+								<span class="glyphicon glyphicon-remove-sign"></span>
+							{% endif %}
+						</td>
+						<td>
+							{% if item.imageAvant|length > 0 and item.imageApres|length > 0 %}
+								<span class="glyphicon glyphicon-ok-sign"></span>
+							{% else %}
+								<span class="glyphicon glyphicon-remove-sign"></span>
+							{% endif %}					
+						
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+				{% endif %}
+			</table>
+		</div>	
+		
+		<input type = "hidden" name = "task" id = "task" value = "" />
+	</form>
+	
+<script type = "text/javascript">
+$(function () {
+    $('#delete_button').click(function() {
 
-	<div class="table-responsive">
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>N° Pose</th>
-					<th>Date début</th>
-					<th>Point vente</th>
-					<th>Ville</th>
-					<th>CP</th>
-					<th>Projet</th>
-					<th>Type d'intervention</th>
-					<th>Client</th>
-					<th>Poseurs</th>
-					<th>Statut</th>
-					<th>LP</th>
-					<th>Brief</th>
-					<th>Photos</th>
-				</tr>
-			</thead>
-			{% if items|length > 0 %}
-			<tbody>
-				{% for item in items %}
-				<tr>
-					<td>{{ item.id }}</td>
-					<td>{{ item.dateDebut|date('d-m-Y H:i:s') }}</td>
-					<td><a href = "{{ path("gb_gestion_bundle_planning_interventions_edit", { 'id': item.id }) }}">{{ item.projet.pointvente }}</a></td>
-					<td>{{ item.projet.pointvente.ville }}</td>
-					<td>{{ item.projet.pointvente.codePostal }}</td>
-					<td>{{ item.projet }}</td>
-					<td>{{ item.type }}</td>
-					<td>{{ item.projet.client }}</td>
-					<td>{{ item.poseurs|join(', ') }}</td>
-					<td>{{ item.statut }}</td>
-					<td>
-						{% if item.laissezPasserValide == 1 %}
-							<span class="glyphicon glyphicon-ok-sign"></span>
-						{% else %}
-							<span class="glyphicon glyphicon-remove-sign"></span>
-						{% endif %}
-					</td>
-					<td>
-						{% if item.brief|length > 0 %}
-							<span class="glyphicon glyphicon-ok-sign"></span>
-						{% else %}
-							<span class="glyphicon glyphicon-remove-sign"></span>
-						{% endif %}
-					</td>
-					<td>
-						{% if item.imageAvant|length > 0 and item.imageApres|length > 0 %}
-							<span class="glyphicon glyphicon-ok-sign"></span>
-						{% else %}
-							<span class="glyphicon glyphicon-remove-sign"></span>
-						{% endif %}					
-					
-					</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-			{% endif %}
-		</table>
-	</div>	
+    	var checked = $('input[name="cid[]"]:checked').length > 0;
+    	if(checked)
+    	{
+        	var r = confirm("Êtes vous sûr de vouloir supprimer ces éléments ?");
+        	if (r == true) {
+        		$('#task').val('delete');
+        		$('#list_form').submit();
+        	} 
+    	}
+    	else
+    	{
+			alert('Merci de sélectionner des éléments à supprimer.');
+    	}
+
+		
+    });
+});
+</script>	
 {% endblock %}
