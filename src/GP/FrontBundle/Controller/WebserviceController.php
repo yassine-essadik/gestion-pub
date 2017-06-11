@@ -168,5 +168,32 @@ class WebserviceController extends Controller
     	var_dump($_FILES);
     	
     	die;
+    	$id = $request->get('id');
+    	
+    	if(!empty($id))
+    	{
+    		
+    		$em = $this->getDoctrine()->getManager();
+    		$intervention = $em->getRepository('GPGestionBundle:Intervention')->find($id);
+    		
+    		if (empty($intervention))
+    		{
+    			throw new NotFoundHttpException("L'enregistrement d'id ".$id." n'existe pas.");
+    		}
+    		else
+    		{
+    			$commentaire = $request->get('commentaire');
+    			$statut = $request->get('statut');
+    			
+    			$intervention->setCommentaire($commentaire);
+    			$intervention->setStatut($statut);
+    			
+    			
+    			$em->persist($intervention);
+    			$em->flush();
+    		}
+    		
+    	}
+    	exit;
     }
 }

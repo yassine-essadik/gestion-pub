@@ -14,7 +14,7 @@
 	          <a class="navbar-brand" href="#">Gestion PLV</a>
 	        </div>	
 	        <div id="navbar" class="navbar-collapse collapse">
-	          <ul class="nav navbar-nav">
+	          <ul class="nav navbar-nav" style = "width:80%">
 	            
 {# 	            <li class="{% if app.request.get('_route') == 'gb_gestion_bundle_home' %} active{% endif %}">#}
 {# 	            	<a href="{{ path("gb_gestion_bundle_home") }}">Accueil</a>#}
@@ -25,12 +25,14 @@
 	            <li class="{% if app.request.get('_route') == 'gb_gestion_bundle_parametrage' %} active{% endif %}">
 	            	<a href="{{ path("gb_gestion_bundle_parametrage") }}">Paramétrage</a>
 	            </li>
-	            <li class="{% if app.request.get('_route') == 'gb_gestion_bundle_options' %} active{% endif %}">
+{#	            <li class="{% if app.request.get('_route') == 'gb_gestion_bundle_options' %} active{% endif %}">
 	            	<a href="{{ path("gb_gestion_bundle_options") }}">Options</a>
-	            </li>
-	            <li class="">
+	            </li>#}
+	            <li class="pull-right">
 	                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-	                    <a href="{{ path('gp_gestion_security_logout') }}">{{ 'Se déconnecter'|trans }}</a>
+	                    <a href="{{ path('gp_gestion_security_logout') }}" title = "{{ 'Se déconnecter'|trans }}">
+	                    	<img src="{{ asset('images/logout.png') }}" alt = "{{ 'Se déconnecter'|trans }}"/>
+	                	</a>
 	                {% endif %}
 	            </li>	
 
