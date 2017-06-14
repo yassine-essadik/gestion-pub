@@ -160,15 +160,9 @@ class WebserviceController extends Controller
     
     public function saveAction(Request $request)
     {
-    	echo '<pre>';
-    	echo 'Request :';
-    	var_dump($_REQUEST);	
-    	
-    	echo 'Files :';
-    	var_dump($_FILES);
-    	
-    	die;
     	$id = $request->get('id');
+    	
+    	$response = new \stdClass();
     	
     	if(!empty($id))
     	{
@@ -178,7 +172,8 @@ class WebserviceController extends Controller
     		
     		if (empty($intervention))
     		{
-    			throw new NotFoundHttpException("L'enregistrement d'id ".$id." n'existe pas.");
+    			$response->success = false;
+    			$response->message = "L'enregistrement d'id ".$id." n'existe pas.";
     		}
     		else
     		{
@@ -186,14 +181,53 @@ class WebserviceController extends Controller
     			$statut = $request->get('statut');
     			
     			$intervention->setCommentaire($commentaire);
-    			$intervention->setStatut($statut);
     			
+    			$InterventionStatut = $em->getRepository('GPGestionBundle:InterventionStatut')->find($statut);
+    			$intervention->setStatut($InterventionStatut);
+    			
+    			$uploaddir = $this->getParameter('intervention_images_directory').'/';
+    			
+    			if(!empty($_FILES['image_avant']) && $_FILES['image_avant']['error'] == 0)
+    			{
+    				$filename = $_FILES['image_avant']['name'];
+    				$ext = pathinfo($filename, PATHINFO_EXTENSION);
+    				
+    				$uploadfile = md5(uniqid()).'.'.$ext;
+    				 
+    				if(move_uploaded_file($_FILES['image_avant']['tmp_name'], $uploaddir. $uploadfile))
+    				{
+    					$intervention->setImageAvant($uploadfile);
+    				}
+    			}
+
+    			 
+    			if(!empty($_FILES['image_apres']) && $_FILES['image_apres']['error'] == 0)
+    			{
+    				$filename = $_FILES['image_apres']['name'];
+    				$ext = pathinfo($filename, PATHINFO_EXTENSION);
+    				
+    				$uploadfile =  md5(uniqid()).'.'.$ext;
+    				
+    				if(move_uploaded_file($_FILES['image_apres']['tmp_name'], $uploaddir. $uploadfile))
+    				{
+    					$intervention->setImageApres($uploadfile);
+    				}
+    			}
     			
     			$em->persist($intervention);
     			$em->flush();
+    			
+    			$response->success = true;
     		}
     		
     	}
+    	else
+    	{
+    		$response->success = false;
+    		$response->message = "ID intervention obligatoire.";
+    	}
+    	header('Content-Type: application/json');
+    	echo json_encode($response);
     	exit;
     }
 }
