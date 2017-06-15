@@ -128,6 +128,8 @@ class WebserviceController extends Controller
     			$intervention->title = $item->getType() . ' : ' . $item->getProjet()->getPointvente();
     			$intervention->date_start = $item->getDateDebut();
     			$intervention->date_end = $item->getDateFin();
+    			$intervention->image_avant = $this->getParameter('intervention_images_url').'/'. $item->getImageAvant();
+    			$intervention->image_apres = $this->getParameter('intervention_images_url').'/'. $item->getImageApres();
     			$intervention->projet = $item->getProjet()->getNom();
     			$intervention->laissez_passer_valide = $item->getLaissezPasserValide();
     			$intervention->contact_urgence = $item->getContactUrgence();
