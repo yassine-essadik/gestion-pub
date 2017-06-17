@@ -22,9 +22,9 @@ class InterventionRepository extends \Doctrine\ORM\EntityRepository
 		->where($qb->expr()->eq('p.id', $id));
 
 		if($today_show)
-			$qb->where("i.dateDebut >= '" . $today_date . "' AND i.dateDebut <= '" . $today_date_end ."'");
+			$qb->andWhere("i.dateDebut >= '" . $today_date . "' AND i.dateDebut <= '" . $today_date_end ."'");
 		else 
-			$qb->where("i.dateDebut < '" . $today_date . "'");
+			$qb->andWhere("i.dateDebut < '" . $today_date . "'");
 			
 		$qb->orderBy('i.dateDebut');
 		return $qb->getQuery()->getResult();
