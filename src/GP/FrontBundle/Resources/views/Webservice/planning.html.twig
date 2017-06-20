@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Administration{% endblock %}</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}" type="text/css" />
+	
+	<script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('js/moment.min.js') }}"></script>
+		
+	<script src="{{ asset('js/fullcalendar.min.js') }}"></script>
+	<script src="{{ asset('js/fullcalendar_local_fr.js') }}"></script>
+	
+	<link rel="stylesheet" href="{{ asset('css/fullcalendar.min.css') }}" type="text/css" />
+	  
+</head>
+<body style = "padding:5px;">
+
+	<div id="calendar"></div>
+
+	<script type="text/javascript">
+	jQuery(document).ready(function($) {
+
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay,listWeek'
+			},
+			height: 'auto',
+			minTime: '08:00:00',
+			defaultDate: '{{ "now"|date('Y-m-d') }}',
+			defaultView: 'agendaWeek',
+			editable: false,
+			eventLimit: true, // allow "more" link when too many events
+			navLinks: true,
+			events: [
+				{% if items|length > 0 %}
+					{% for item in items %}
+						{
+							id: '{{ item.id }}',
+							title: '{{ item.type ~ " : " ~ item.projet.pointvente }}',
+							start: '{{ item.dateDebut|date('Y-m-d H:i:s') }}',
+							end: '{{ item.dateFin|date('Y-m-d H:i:s') }}',
+							url: '{{ path("gb_gestion_bundle_planning_interventions_edit", { 'id': item.id }) }}',
+						},
+					{% endfor %}
+				{% endif %}
+					],	
+			eventClick: function(event) {
+		        if (event.url) {
+		            window.open(event.url, '_self');
+				    
+		            return false;
+		        }
+		    },
+					
+		});
+
+	});
+	</script>
+	
+</body>
+</html>

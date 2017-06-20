@@ -104,6 +104,22 @@ class WebserviceController extends Controller
     	exit;
     }
 
+    public function planningAction(Request $request)
+    {
+    	$id = $request->get('id');
+    	$today = $request->get('today', 0);
+    	$em = $this->getDoctrine()->getManager();
+    	$poseur = $em->getRepository('GPGestionBundle:Poseur')->findOneById($id);
+    	 
+    	$items = array();
+    	if(!empty($poseur))
+    	{
+    		$items = $em->getRepository('GPGestionBundle:Intervention')->getListByPoseur($id, $today);
+    	}
+    	 
+    	return $this->render('GPFrontBundle:Webservice:planning.html.twig', array('items' => $items));
+    	 
+    }
     public function interventionAction(Request $request)
     {
     	$id = $request->get('id');
