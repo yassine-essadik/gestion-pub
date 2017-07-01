@@ -21,6 +21,9 @@ class InterventionRepository extends \Doctrine\ORM\EntityRepository
 		$qb->join('i.poseurs', 'p')
 		->where($qb->expr()->eq('p.id', $id));
 
+		$qb->join('i.statut', 's')
+		->andWhere('(s.id = 1 OR s.id = 2)');
+		
 		if(!$show_all)
 		{
 			if($today_show)
