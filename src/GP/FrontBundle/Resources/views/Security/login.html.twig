@@ -10,7 +10,7 @@
 
             <h1 class="text-center">Espace client</h1>
 
-            <form action="{{ path("gp_gestion_security_check") }}" method="post" class="center-block">
+            <form action="{{ path("fos_user_security_check") }}" method="post" class="center-block">
 
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
