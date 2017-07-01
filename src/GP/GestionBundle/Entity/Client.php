@@ -22,6 +22,12 @@ class Client
     private $id;
 
     /**
+     * @ORM\OneToMany(targetEntity="GP\GestionBundle\Entity\Projet", mappedBy="client", cascade={"remove"})
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    private $projets;
+    
+    /**
      *
      * @ORM\OneToOne(targetEntity="GP\MainBundle\Entity\User", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)

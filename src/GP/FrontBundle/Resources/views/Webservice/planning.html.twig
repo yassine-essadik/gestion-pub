@@ -29,7 +29,7 @@
 			header: {
 				left: 'prev,next today',
 				center: 'title',
-				right: 'month,agendaWeek,agendaDay,listWeek'
+				right: 'agendaWeek,agendaDay,listWeek'
 			},
 			height: 'auto',
 			minTime: '08:00:00',
@@ -46,18 +46,11 @@
 							title: '{{ item.type ~ " : " ~ item.projet.pointvente }}',
 							start: '{{ item.dateDebut|date('Y-m-d H:i:s') }}',
 							end: '{{ item.dateFin|date('Y-m-d H:i:s') }}',
-							url: '{{ path("gb_gestion_bundle_planning_interventions_edit", { 'id': item.id }) }}',
+							url: '',
 						},
 					{% endfor %}
 				{% endif %}
-					],	
-			eventClick: function(event) {
-		        if (event.url) {
-		            window.open(event.url, '_self');
-				    
-		            return false;
-		        }
-		    },
+					],
 					
 		});
 

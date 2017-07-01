@@ -11,7 +11,7 @@ namespace GP\GestionBundle\Repository;
 class InterventionRepository extends \Doctrine\ORM\EntityRepository
 {
 	
-	public function getListByPoseur($id, $today_show)
+	public function getListByPoseur($id, $today_show, $show_all=false)
 	{
 		$today = new \DateTime() ;
 		$today_date = $today->format('Y-m-d 00:00:00');
@@ -21,10 +21,14 @@ class InterventionRepository extends \Doctrine\ORM\EntityRepository
 		$qb->join('i.poseurs', 'p')
 		->where($qb->expr()->eq('p.id', $id));
 
-		if($today_show)
-			$qb->andWhere("i.dateDebut >= '" . $today_date . "' AND i.dateDebut <= '" . $today_date_end ."'");
-		else 
-			$qb->andWhere("i.dateDebut < '" . $today_date . "'");
+		if(!$show_all)
+		{
+			if($today_show)
+				$qb->andWhere("i.dateDebut >= '" . $today_date . "' AND i.dateDebut <= '" . $today_date_end ."'");
+			else
+				$qb->andWhere("i.dateDebut < '" . $today_date . "'");			
+		}
+
 			
 		$qb->orderBy('i.dateDebut');
 		return $qb->getQuery()->getResult();

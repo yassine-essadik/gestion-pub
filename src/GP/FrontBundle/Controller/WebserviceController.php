@@ -87,6 +87,7 @@ class WebserviceController extends Controller
 				$intervention->statut = $item->getStatut()->getNom();
 				$intervention->latitude = $item->getProjet()->getPointvente()->getLatitude();
 				$intervention->longitude = $item->getProjet()->getPointvente()->getLongitude();
+				$intervention->adresse = $item->getProjet()->getPointvente()->getAdresse();
 				
 				$list[] = $intervention;
     		}
@@ -107,14 +108,13 @@ class WebserviceController extends Controller
     public function planningAction(Request $request)
     {
     	$id = $request->get('id');
-    	$today = $request->get('today', 0);
     	$em = $this->getDoctrine()->getManager();
     	$poseur = $em->getRepository('GPGestionBundle:Poseur')->findOneById($id);
     	 
     	$items = array();
     	if(!empty($poseur))
     	{
-    		$items = $em->getRepository('GPGestionBundle:Intervention')->getListByPoseur($id, $today);
+    		$items = $em->getRepository('GPGestionBundle:Intervention')->getListByPoseur($id, false, true);
     	}
     	 
     	return $this->render('GPFrontBundle:Webservice:planning.html.twig', array('items' => $items));
@@ -152,6 +152,7 @@ class WebserviceController extends Controller
     			$intervention->statut = $item->getStatut()->getNom();
     			$intervention->latitude = $item->getProjet()->getPointvente()->getLatitude();
     			$intervention->longitude = $item->getProjet()->getPointvente()->getLongitude();
+    			$intervention->adresse = $item->getProjet()->getPointvente()->getAdresse();
     			
     			$response->intervention = $intervention;    			
     			

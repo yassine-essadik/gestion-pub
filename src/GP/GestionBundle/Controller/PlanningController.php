@@ -37,8 +37,9 @@ class PlanningController extends Controller
 						{
 							$item_delete = $em->getRepository('GPGestionBundle:Intervention')->find($one);
 							$em->remove($item_delete);
+							$em->flush();
 						}
-						$em->flush();
+						
 					}
 					$request->getSession()->getFlashBag()->clear();
 					$request->getSession()->getFlashBag()->add('notice', 'Les éléments ont bien été supprimés.');

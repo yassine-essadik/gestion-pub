@@ -23,6 +23,12 @@ class Pointvente
     private $id;
 
     /**
+     * @ORM\OneToMany(targetEntity="GP\GestionBundle\Entity\Projet", mappedBy="pointvente", cascade={"remove"})
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    private $projets;
+    
+    /**
      * 
      * @ORM\ManyToOne(targetEntity="GP\GestionBundle\Entity\Departement")
      * @ORM\JoinColumn(nullable=false)
